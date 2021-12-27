@@ -11,13 +11,11 @@ serverProcess=$(pgrep -f start-server)
 screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
 
 echo "Creating server screen"
-screen -S server
+screen -dmS server
 
 cd "$serverDirPath" || (echo "Can't cd into server folder. Abort." && exit)
 
 echo "Starting server"
 ./start-server.sh
-
-screen -d
 
 echo "Server started"
