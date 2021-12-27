@@ -73,14 +73,14 @@ case $input in
     restoreBackup
     ;;
 
-  mods)
+  update-mods)
     updateMods
     ;;
 
   *)
     echo "Please provide a correct action"
     ;;
-    
+
 esac
 
 exit
