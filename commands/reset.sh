@@ -3,6 +3,8 @@
 databasePath=$1
 savesPath=$2
 
+cd
+
 serverProcess=$(pgrep -f start-server)
 [ -n "$serverProcess" ] && echo "Server is running. Can't wipe" && exit
 
