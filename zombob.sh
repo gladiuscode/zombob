@@ -1,6 +1,8 @@
 #!/bin/bash
 commandsPath="commands"
 serverPath=".steam/steamcmd/pzserver"
+databasePath="Zomboid/db/servertest.db"
+savesPath="Zomboid/Saves/Multiplayer/servertest"
 
 navigateToCommands() {
   cd "$commandsPath" || (echo "Can't cd into commands. Abort." && exit)
@@ -32,6 +34,9 @@ restart() {
 # reset server
 reset() {
   echo "[ZOMBOB] > reset"
+  chmod +x reset.sh
+  ./reset.sh $databasePath $savesPath
+  chmod -x reset.sh
 }
 
 # update server
