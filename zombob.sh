@@ -1,8 +1,17 @@
 #!/bin/bash
+commandsPath="commands"
+serverPath=".steam/steamcmd/pzserver"
+
+navigateToCommands() {
+  cd "$commandsPath" || echo "Can't cd into commands. Abort." && exit
+  pwd
+}
 
 # start server
 start() {
   echo "[ZOMBOB] > start"
+  navigateToCommands
+  ./start.sh $serverPath
 }
 
 # stop server
@@ -46,40 +55,31 @@ read input
 case $input in
 
   start)
-    start
-    ;;
+    start ;;
 
   stop)
-    stop
-    ;;
+    stop ;;
 
   restart)
-    restart
-    ;;
+    restart ;;
 
   reset)
-    reset
-    ;;
+    reset ;;
 
   update)
-    update
-    ;;
+    update ;;
 
   create-backup)
-    createBackup
-    ;;
+    createBackup ;;
 
   restore-backup)
-    restoreBackup
-    ;;
+    restoreBackup ;;
 
   update-mods)
-    updateMods
-    ;;
+    updateMods ;;
 
   *)
-    echo "Please provide a correct action"
-    ;;
+    echo "Please provide a correct action" ;;
 
 esac
 
