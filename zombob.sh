@@ -29,6 +29,10 @@ stop() {
 # restart server
 restart() {
   echo "[ZOMBOB] > restart"
+    navigateToCommands
+    chmod +x restart.sh
+    ./restart.sh
+    chmod -x restart.sh
 }
 
 # reset server
