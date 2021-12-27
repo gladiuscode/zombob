@@ -55,7 +55,7 @@ createBackup() {
   echo "[ZOMBOB] > create backup"
   navigateToCommands
   chmod +x create-backup.sh
-  ./create-backup.sh $savesPath $backupsPath
+  ./create-backup.sh $savesPath $databasePath $backupsPath
   chmod -x create-backup.sh
 }
 
