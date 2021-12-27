@@ -7,6 +7,8 @@ databasePath=$4
 backupsPath=$5
 serverPath=$6
 
+cd
+
 # stop server
 ./stop.sh
 sleep 15s
