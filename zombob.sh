@@ -3,6 +3,7 @@ commandsPath="commands"
 serverPath=".steam/steamcmd/pzserver"
 databasePath="Zomboid/db/servertest.db"
 savesPath="Zomboid/Saves/Multiplayer/servertest"
+backupsPath="Zomboid/Backups"
 
 navigateToCommands() {
   cd "$commandsPath" || (echo "Can't cd into commands. Abort." && exit)
@@ -29,15 +30,16 @@ stop() {
 # restart server
 restart() {
   echo "[ZOMBOB] > restart"
-    navigateToCommands
-    chmod +x restart.sh
-    ./restart.sh
-    chmod -x restart.sh
+  navigateToCommands
+  chmod +x restart.sh
+  ./restart.sh
+  chmod -x restart.sh
 }
 
 # reset server
 reset() {
   echo "[ZOMBOB] > reset"
+  navigateToCommands
   chmod +x reset.sh
   ./reset.sh $databasePath $savesPath
   chmod -x reset.sh
@@ -51,6 +53,10 @@ update() {
 # create backup
 createBackup() {
   echo "[ZOMBOB] > create backup"
+  navigateToCommands
+  chmod +x create-backup.sh
+  ./create-backup.sh $savesPath $backupsPath
+  chmod -x create-backup.sh
 }
 
 # restore backup
