@@ -4,6 +4,8 @@ savesPath=$1
 databasePath=$2
 backupsPath=$3
 
+cd
+
 backupDate=$(date +"%m-%d-%y-%H-%M-%S")
 backupFolder="$backupsPath/$backupDate"
 backupFolderName="$backupsPath/$backupDate/backup.tar"
