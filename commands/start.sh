@@ -2,6 +2,8 @@
 
 serverDirPath=$1
 
+cd
+
 serverProcess=$(pgrep -f start-server)
 [ -n "$serverProcess" ] && echo "Server is already up and running" && exit
 
