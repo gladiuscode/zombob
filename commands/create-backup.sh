@@ -5,6 +5,7 @@ databasePath=$2
 backupsPath=$3
 
 backupDate=$(date +"%m-%d-%y-%H-%M-%S")
+backupFolder="$backupsPath/$backupDate"
 backupFolderName="$backupsPath/$backupDate/backup.tar"
 
 # check if backups dir doesn't exist
@@ -13,6 +14,6 @@ backupFolderName="$backupsPath/$backupDate/backup.tar"
 
 # create backups
 echo "Creating backup"
-mkdir "$backupDate"
+mkdir "$backupFolder"
 tar -zcf "$backupFolderName" "$savesPath" "$databasePath"
 echo "Backup created"
