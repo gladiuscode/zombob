@@ -14,6 +14,8 @@ printAskToDisconnect() {
   executeCommandOnServer "servermsg $msg^M"
 }
 
+cd
+
 # check server running status
 serverProcess=$(pgrep -f start-server)
 [ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit
