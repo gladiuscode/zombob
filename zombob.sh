@@ -79,6 +79,8 @@ updateMods() {
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
 read input
 
+cd
+
 case "$input" in
 
   "start")
@@ -109,5 +111,7 @@ case "$input" in
     echo "Please provide a correct action" ;;
 
 esac
+
+cd
 
 exit
