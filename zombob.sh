@@ -1,6 +1,9 @@
 #!/bin/bash
 commandsPath="commands"
 serverPath=".steam/steamcmd/pzserver"
+workshopPath="${serverPath}/steamapps/workshop"
+modsConfigPath="${workshopPath}/appworkshop_108600.acf"
+modsPath="${workshopPath}/content/108600"
 databasePath="Zomboid/db/servertest.db"
 savesPath="Zomboid/Saves/Multiplayer/servertest"
 backupsPath="Zomboid/Backups"
@@ -67,6 +70,10 @@ restoreBackup() {
 # update mods
 updateMods() {
   echo "[ZOMBOB] > update mods"
+  navigateToCommands
+  chmod +x update-mods.sh
+  ./update-mods.sh $modsConfigPath $modsPath $savesPath $databasePath $backupsPath $serverPath
+  chmod -x update-mods.sh
 }
 
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
