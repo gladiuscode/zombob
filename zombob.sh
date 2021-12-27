@@ -18,6 +18,10 @@ start() {
 # stop server
 stop() {
   echo "[ZOMBOB] > stop"
+  navigateToCommands
+  chmod +x stop.sh
+  ./stop.sh
+  chmod -x stop.sh
 }
 
 # restart server
