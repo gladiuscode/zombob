@@ -3,15 +3,16 @@ commandsPath="commands"
 serverPath=".steam/steamcmd/pzserver"
 
 navigateToCommands() {
-  cd "$commandsPath" || echo "Can't cd into commands. Abort." && exit
-  pwd
+  cd "$commandsPath" || (echo "Can't cd into commands. Abort." && exit)
 }
 
 # start server
 start() {
   echo "[ZOMBOB] > start"
   navigateToCommands
+  chmod +x start.sh
   ./start.sh $serverPath
+  chmod -x start.sh
 }
 
 # stop server
@@ -52,30 +53,30 @@ updateMods() {
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
 read input
 
-case $input in
+case "$input" in
 
-  start)
+  "start")
     start ;;
 
-  stop)
+  "stop")
     stop ;;
 
-  restart)
+  "restart")
     restart ;;
 
-  reset)
+  "reset")
     reset ;;
 
-  update)
+  "update")
     update ;;
 
-  create-backup)
+  "create-backup")
     createBackup ;;
 
-  restore-backup)
+  "restore-backup")
     restoreBackup ;;
 
-  update-mods)
+  "update-mods")
     updateMods ;;
 
   *)
