@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd
+
 serverProcess=$(pgrep -f start-server)
 [ -z "$serverProcess" ] && echo "Server is already down" && exit
 
