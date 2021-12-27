@@ -18,6 +18,6 @@ cd "$serverDirPath" || (echo "Can't cd into server folder. Abort." && exit)
 echo "Starting server"
 ./start-server.sh
 
-screen -D
+screen -d
 
 echo "Server started"
