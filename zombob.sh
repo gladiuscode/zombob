@@ -80,5 +80,7 @@ case $input in
   *)
     echo "Please provide a correct action"
     ;;
+    
+esac
 
 exit
