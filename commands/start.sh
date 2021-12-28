@@ -12,8 +12,6 @@ serverProcess=$(pgrep -f start-server)
 # kill server screen
 screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
 
-cd
-
 screen -dmS server
 
 executeCommand "cd $serverDirPath"
