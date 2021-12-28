@@ -1,29 +1,29 @@
 #!/bin/bash
 
-executeCommandOnServer() {
-  screen -S server -X stuff $1
+executeCommand() {
+  screen -S server -X stuff "$1^M"
 }
 
 printRestartInMinutes() {
   msg="Server-restart-in-$1"
-  executeCommandOnServer "servermsg $msg^M"
+  executeCommand "servermsg $msg"
 }
 
 printAskToDisconnect() {
   msg="Per-favore-disconnettiti-per-un-paio-di-minuti"
-  executeCommandOnServer "servermsg $msg^M"
+  executeCommand "servermsg $msg"
 }
-
-cd
 
 # check server running status
 serverProcess=$(pgrep -f start-server)
 [ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit
 
+cd
+
 printRestartInMinutes "10-minuti"
-sleep 5m
+sleep 5s
 printRestartInMinutes "5-minuti"
-sleep 4m
+sleep 4s
 
 printAskToDisconnect
 sleep 30s
