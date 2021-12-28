@@ -17,25 +17,25 @@ backupsPath="$ZOMBOID_PATH/Backups"
 # start server
 start() {
   echo "[ZOMBOB] > start"
-  $COMMANDS_PATH/start.sh $SERVER_PATH
+  ./$COMMANDS_PATH/start.sh $SERVER_PATH
 }
 
 # stop server
 stop() {
   echo "[ZOMBOB] > stop"
-  $COMMANDS_PATH/stop.sh
+  ./$COMMANDS_PATH/stop.sh
 }
 
 # restart server
 restart() {
   echo "[ZOMBOB] > restart"
-  $COMMANDS_PATH/restart.sh
+  ./$COMMANDS_PATH/restart.sh
 }
 
 # reset server
 reset() {
   echo "[ZOMBOB] > reset"
-  $COMMANDS_PATH/reset.sh $databasePath $savesPath
+  ./$COMMANDS_PATH/reset.sh $databasePath $savesPath
 }
 
 # update server
@@ -46,7 +46,7 @@ update() {
 # create backup
 createBackup() {
   echo "[ZOMBOB] > create backup"
-  $COMMANDS_PATH/create-backup.sh $savesPath $databasePath $backupsPath
+  ./$COMMANDS_PATH/create-backup.sh $savesPath $databasePath $backupsPath
 }
 
 # restore backup
@@ -57,10 +57,8 @@ restoreBackup() {
 # update mods
 updateMods() {
   echo "[ZOMBOB] > update mods"
-  $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH $savesPath $databasePath $backupsPath $SERVER_PATH
+  ./$COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH $savesPath $databasePath $backupsPath $SERVER_PATH
 }
-
-cd
 
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
 read input
