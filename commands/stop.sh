@@ -9,8 +9,6 @@ quitMessage="servermsg Il-server-si-spegnerà-tra-"
 serverProcess=$(pgrep -f start-server)
 [ -z "$serverProcess" ] && echo "Server is already down" && exit
 
-cd
-
 echo "Waiting 5 minutes..."
 executeCommand "${quitMessage}5-minuti"
 sleep 5m
