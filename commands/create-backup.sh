@@ -1,21 +1,19 @@
 #!/bin/bash
 
-savesPath=$1
-databasePath=$2
-backupsPath=$3
+SAVES_PATH=$1
+DATABASE_PATH=$2
+BACKUPS_PATH=$3
 
-cd
-
-backupDate=$(date +"%m-%d-%y-%H-%M-%S")
-backupFolder="$backupsPath/$backupDate"
-backupFolderName="$backupsPath/$backupDate/backup.tar"
+BACKUP_DATE=$(date +"%m-%d-%y-%H-%M-%S")
+BACKUP_FOLDER="$BACKUPS_PATH/$BACKUP_DATE"
+BACKUP_FOLDER_NAME="$BACKUPS_PATH/$BACKUP_DATE/backup.tar"
 
 # check if backups dir doesn't exist
-[ ! -d "$backupsPath" ] && mkdir "$backupsPath"
-[ ! -d "$backupsPath" ] && echo "Backups directory in Zomboid folder is missing. Please create it." && exit
+[ ! -d "$BACKUPS_PATH" ] && mkdir "$BACKUPS_PATH"
+[ ! -d "$BACKUPS_PATH" ] && echo "Backups directory in Zomboid folder is missing. Please create it." && exit
 
 # create backups
 echo "Creating backup"
-mkdir "$backupFolder"
-tar -zcf "$backupFolderName" "$savesPath" "$databasePath"
+mkdir "$BACKUP_FOLDER"
+tar -zcf "$BACKUP_FOLDER_NAME" "$SAVES_PATH" "$DATABASE_PATH"
 echo "Backup created"
