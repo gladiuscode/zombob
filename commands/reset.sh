@@ -1,9 +1,7 @@
 #!/bin/bash
 
-databasePath=$1
-savesPath=$2
-
-cd
+DATABASE_PATH=$1
+SAVES_PATH=$2
 
 serverProcess=$(pgrep -f start-server)
 [ -n "$serverProcess" ] && echo "Server is running. Can't wipe" && exit
@@ -18,9 +16,9 @@ then
 fi
 
 echo "Deleting database"
-rm $databasePath
+rm "$DATABASE_PATH"
 
 echo "Deleting saves"
-rm -rf $savesPath
+rm -rf "$SAVES_PATH"
 
 echo "Server wiped"
