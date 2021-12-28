@@ -60,6 +60,8 @@ updateMods() {
   $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH $savesPath $databasePath $backupsPath $SERVER_PATH
 }
 
+cd
+
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
 read input
 
@@ -93,7 +95,5 @@ case "$input" in
     echo "Please provide a correct action" ;;
 
 esac
-
-cd
 
 exit
