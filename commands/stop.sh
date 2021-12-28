@@ -11,6 +11,7 @@ serverProcess=$(pgrep -f start-server)
 
 cd
 
+echo "Waiting 5 minutes..."
 executeCommand "${quitMessage}5-minuti"
 sleep 5m
 
