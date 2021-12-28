@@ -1,43 +1,41 @@
 #!/bin/bash
-commandsPath="commands"
-serverPath=".steam/steamcmd/pzserver"
-workshopPath="${serverPath}/steamapps/workshop"
-modsConfigPath="${workshopPath}/appworkshop_108600.acf"
-modsPath="${workshopPath}/content/108600"
-databasePath="Zomboid/db/servertest.db"
-savesPath="Zomboid/Saves/Multiplayer/servertest"
-backupsPath="Zomboid/Backups"
+HOME="~"
 
-navigateToCommands() {
-  cd "$commandsPath" || (echo "Can't cd into commands. Abort." && exit)
-}
+ZOMBOB_PATH="$HOME/zombob"
+COMMANDS_PATH="$ZOMBOB_PATH/commands"
+
+SERVER_PATH="$HOME/.steam/steamcmd/pzserver"
+WORKSHOP_PATH="${SERVER_PATH}/steamapps/workshop"
+MODS_CONFIG_PATH="${WORKSHOP_PATH}/appworkshop_108600.acf"
+MODS_PATH="${WORKSHOP_PATH}/content/108600"
+
+ZOMBOID_PATH="$HOME/Zomboid"
+databasePath="$ZOMBOID_PATH/db/servertest.db"
+savesPath="$ZOMBOB_PATH/Saves/Multiplayer/servertest"
+backupsPath="$ZOMBOID_PATH/Backups"
 
 # start server
 start() {
   echo "[ZOMBOB] > start"
-  navigateToCommands
-  ./start.sh $serverPath
+  $COMMANDS_PATH/start.sh $SERVER_PATH
 }
 
 # stop server
 stop() {
   echo "[ZOMBOB] > stop"
-  navigateToCommands
-  ./stop.sh
+  $COMMANDS_PATH/stop.sh
 }
 
 # restart server
 restart() {
   echo "[ZOMBOB] > restart"
-  navigateToCommands
-  ./restart.sh
+  $COMMANDS_PATH/restart.sh
 }
 
 # reset server
 reset() {
   echo "[ZOMBOB] > reset"
-  navigateToCommands
-  ./reset.sh $databasePath $savesPath
+  $COMMANDS_PATH/reset.sh $databasePath $savesPath
 }
 
 # update server
@@ -48,8 +46,7 @@ update() {
 # create backup
 createBackup() {
   echo "[ZOMBOB] > create backup"
-  navigateToCommands
-  ./create-backup.sh $savesPath $databasePath $backupsPath
+  $COMMANDS_PATH/create-backup.sh $savesPath $databasePath $backupsPath
 }
 
 # restore backup
@@ -60,8 +57,7 @@ restoreBackup() {
 # update mods
 updateMods() {
   echo "[ZOMBOB] > update mods"
-  navigateToCommands
-  ./update-mods.sh $modsConfigPath $modsPath $savesPath $databasePath $backupsPath $serverPath
+  $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH $savesPath $databasePath $backupsPath $SERVER_PATH
 }
 
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
