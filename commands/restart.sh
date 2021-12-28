@@ -18,8 +18,6 @@ printAskToDisconnect() {
 serverProcess=$(pgrep -f start-server)
 [ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit
 
-cd
-
 printRestartInMinutes "10-minuti"
 sleep 5s
 printRestartInMinutes "5-minuti"
