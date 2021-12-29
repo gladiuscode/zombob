@@ -4,6 +4,8 @@ HOME=~/
 ZOMBOB_PATH="${HOME}/zombob"
 COMMANDS_PATH="${ZOMBOB_PATH}/commands"
 
+STEAMCMD_PATH="${HOME}/steamcmd"
+
 SERVER_PATH="${HOME}/.steam/steamcmd/pzserver"
 WORKSHOP_PATH="${SERVER_PATH}/steamapps/workshop"
 MODS_CONFIG_PATH="${WORKSHOP_PATH}/appworkshop_108600.acf"
@@ -70,6 +72,7 @@ reset() {
 # update server
 update() {
   echo "[ZOMBOB] > update"
+  $COMMANDS_PATH/update.sh $STEAMCMD_PATH
 }
 
 # create backup
