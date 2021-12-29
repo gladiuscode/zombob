@@ -54,6 +54,10 @@ stop() {
 restart() {
   echo "[ZOMBOB] > restart"
   $COMMANDS_PATH/restart.sh
+  CAN_KEEP_GOING=$?
+  echo $CAN_KEEP_GOING
+  [ $CAN_KEEP_GOING == 1 ] && echo "Something went wrong" && exit
+
   actionSelector "stop"
   actionSelector "create-backup"
   actionSelector "start"
