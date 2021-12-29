@@ -1,18 +1,18 @@
 #!/bin/bash
 HOME=~/
 
-ZOMBOB_PATH="$HOME/zombob"
-COMMANDS_PATH="$ZOMBOB_PATH/commands"
+ZOMBOB_PATH="${HOME}/zombob"
+COMMANDS_PATH="${ZOMBOB_PATH}/commands"
 
-SERVER_PATH="$HOME/.steam/steamcmd/pzserver"
+SERVER_PATH="${HOME}/.steam/steamcmd/pzserver"
 WORKSHOP_PATH="${SERVER_PATH}/steamapps/workshop"
 MODS_CONFIG_PATH="${WORKSHOP_PATH}/appworkshop_108600.acf"
 MODS_PATH="${WORKSHOP_PATH}/content/108600"
 
-ZOMBOID_PATH="$HOME/Zomboid"
-databasePath="$ZOMBOID_PATH/db/servertest.db"
-savesPath="$ZOMBOB_PATH/Saves/Multiplayer/servertest"
-backupsPath="$ZOMBOID_PATH/Backups"
+ZOMBOID_PATH="${HOME}/Zomboid"
+databasePath="${ZOMBOID_PATH}/db/servertest.db"
+savesPath="${ZOMBOB_PATH}/Saves/Multiplayer/servertest"
+backupsPath="${ZOMBOID_PATH}/Backups"
 
 # input handler
 actionSelector() {
@@ -55,7 +55,6 @@ restart() {
   echo "[ZOMBOB] > restart"
   $COMMANDS_PATH/restart.sh
   CAN_KEEP_GOING=$?
-  echo $CAN_KEEP_GOING
   [ $CAN_KEEP_GOING == 1 ] && echo "Something went wrong" && exit
 
   actionSelector "stop"
