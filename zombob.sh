@@ -1,5 +1,5 @@
 #!/bin/bash
-HOME="~"
+HOME=~/
 
 ZOMBOB_PATH="$HOME/zombob"
 COMMANDS_PATH="$ZOMBOB_PATH/commands"
