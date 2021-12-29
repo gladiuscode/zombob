@@ -14,6 +14,30 @@ databasePath="$ZOMBOID_PATH/db/servertest.db"
 savesPath="$ZOMBOB_PATH/Saves/Multiplayer/servertest"
 backupsPath="$ZOMBOID_PATH/Backups"
 
+# input handler
+actionSelector() {
+  case "$1" in
+    "start")
+      start ;;
+    "stop")
+      stop ;;
+    "restart")
+      restart ;;
+    "reset")
+      reset ;;
+    "update")
+      update ;;
+    "create-backup")
+      createBackup ;;
+    "restore-backup")
+      restoreBackup ;;
+    "update-mods")
+      updateMods ;;
+    *)
+      echo "Please provide a correct action" ;;
+  esac
+}
+
 # start server
 start() {
   echo "[ZOMBOB] > start"
@@ -30,6 +54,9 @@ stop() {
 restart() {
   echo "[ZOMBOB] > restart"
   $COMMANDS_PATH/restart.sh
+  actionSelector "stop"
+  actionSelector "create-backup"
+  actionSelector "start"
 }
 
 # reset server
@@ -61,37 +88,7 @@ updateMods() {
 }
 
 echo "Please input an action {start|stop|restart|reset|update|create-backup|restore-backup|update-mods}"
-read input
-
-case "$input" in
-
-  "start")
-    start ;;
-
-  "stop")
-    stop ;;
-
-  "restart")
-    restart ;;
-
-  "reset")
-    reset ;;
-
-  "update")
-    update ;;
-
-  "create-backup")
-    createBackup ;;
-
-  "restore-backup")
-    restoreBackup ;;
-
-  "update-mods")
-    updateMods ;;
-
-  *)
-    echo "Please provide a correct action" ;;
-
-esac
+read -r input
+actionSelector "$input"
 
 exit
