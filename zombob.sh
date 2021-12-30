@@ -50,7 +50,7 @@ start() {
   echo "[ZOMBOB] > start"
   $COMMANDS_PATH/start.sh $SERVER_PATH
   CAN_KEEP_GOING=$?
-  [ $CAN_KEEP_GOING == 1 ] && echo "Something went wrong" && exit
+  [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
   echo "[ZOMBOB] > Server is up and running"
 }
 
