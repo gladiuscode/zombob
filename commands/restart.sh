@@ -1,5 +1,8 @@
 #!/bin/bash
 
+serverProcess=$(pgrep -f start-server)
+[ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit 0
+
 executeCommand() {
   screen -S server -X stuff "$1^M"
 }
@@ -14,17 +17,13 @@ printAskToDisconnect() {
   executeCommand "servermsg $msg"
 }
 
-# check server running status
-serverProcess=$(pgrep -f start-server)
-[ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit 1
-
 printRestartInMinutes "10-minuti"
-sleep 5s
+sleep 10m
 printRestartInMinutes "5-minuti"
-sleep 4s
+sleep 4m
 
 printAskToDisconnect
-sleep 30s
+sleep 1m
 
-exit 0
+exit 1
 
