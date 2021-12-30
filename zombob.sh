@@ -35,8 +35,13 @@ actionSelector() {
       restoreBackup ;;
     "update-mods")
       updateMods ;;
+    "exit")
+      echo "Goodbye!"
+      exit ;;
     *)
-      echo "Please provide a correct action" ;;
+      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods] or [exit]"
+      read -r input
+      actionSelector "$input"
   esac
 }
 
@@ -95,8 +100,4 @@ updateMods() {
   actionSelector "start"
 }
 
-echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods]"
-read -r input
-actionSelector "$input"
-
-exit
+actionSelector "$1"
