@@ -1,21 +1,19 @@
 #!/bin/bash
 
-serverDirPath=$1
+serverProcess=$(pgrep -f start-server)
+[ -n "$serverProcess" ] && echo "Server is already up and running" && exit 0
+
+SERVER_PATH=$1
 
 executeCommand() {
   screen -S server -X stuff "$1^M"
 }
 
-serverProcess=$(pgrep -f start-server)
-[ -n "$serverProcess" ] && echo "Server is already up and running" && exit
-
-# kill server screen
 screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
 
 screen -dmS server
 
-executeCommand "cd $serverDirPath"
-sleep 2s
+executeCommand "cd $SERVER_PATH"
 executeCommand "./start-server.sh"
 
-echo "Server started"
+exit 1
