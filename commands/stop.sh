@@ -36,7 +36,8 @@ quit() {
 
 if [ "$ARG" != $SKIP_WAIT ]
 then
-  MESSAGE=getServerMsg
+  getServerMsg
+  MESSAGE=$?
   echo "Waiting 5 minutes..."
   executeCommand "${MESSAGE}5-minuti"
   sleep 5m
