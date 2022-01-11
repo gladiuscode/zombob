@@ -45,9 +45,12 @@ then
 
   echo "Waiting 5 minutes..."
   executeCommand "${MESSAGE}5-minuti"
-  sleep 5m
+  sleep 4m
 
+  echo "Saving..."
+  executeCommand "Per-favore-disconnettiti-per-un-paio-di-minuti"
   save
+  sleep 1m
 
   executeCommand "${MESSAGE}5-secondi"
   sleep 1s
@@ -60,6 +63,7 @@ then
   executeCommand "${MESSAGE}1-secondo"
   sleep 1s
 
+  echo "Quitting..."
   quit
   killServer
 
