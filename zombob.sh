@@ -66,7 +66,7 @@ restart() {
   $COMMANDS_PATH/restart.sh
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
-  actionSelector "stop" "n"
+  actionSelector "stop" "skipWait"
   actionSelector "create-backup"
   actionSelector "start"
 }
@@ -97,7 +97,7 @@ restoreBackup() {
 # update mods
 updateMods() {
   echo "[ZOMBOB] > update mods"
-  actionSelector "stop"
+  actionSelector "stop" "toUpdate"
   actionSelector "create-backup"
   $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH
   actionSelector "start"
