@@ -6,14 +6,19 @@ serverProcess=$(pgrep -f start-server)
 TO_STOP="toStop"
 TO_UPDATE="toUpdate"
 SKIP_WAIT="skipWait"
-ARG=$1 || $TO_STOP
+ARG=$1
 
-getServerMsg() {
+computeServerMessage() {
   if [ "$ARG" == $TO_UPDATE ]
   then
-    echo "servermsg Il-server-si-riavvierà-per-aggiornamento-mods-tra-"
+    MESSAGE="servermsg Il-server-si-riavvierà-per-aggiornamento-mods-tra-"
+    return
   fi
-  echo "servermsg Il-server-si-spegnerà-tra-"
+  MESSAGE="servermsg Il-server-si-spegnerà-tra-"
+}
+
+killServer() {
+  screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
 }
 
 executeCommand() {
@@ -36,8 +41,8 @@ quit() {
 
 if [ "$ARG" != $SKIP_WAIT ]
 then
-  getServerMsg
-  MESSAGE=$?
+  computeServerMessage
+
   echo "Waiting 5 minutes..."
   executeCommand "${MESSAGE}5-minuti"
   sleep 5m
@@ -56,16 +61,13 @@ then
   sleep 1s
 
   quit
-
-  screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
+  killServer
 
   exit 1
 fi
 
 save
-
 quit
-
-screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
+killServer
 
 exit 1
