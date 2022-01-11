@@ -36,9 +36,12 @@ actionSelector() {
     "update-mods")
       updateMods ;;
     "exit")
-      echo "Goodbye!"
+      echo "[ ZOMBOB ] > Goodbye!"
       exit ;;
     *)
+      echo "****************************************************************"
+      echo "****                        ZOMBOB                          ****"
+      echo "****************************************************************"
       echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods] or [exit]"
       read -r input
       actionSelector "$input"
@@ -47,60 +50,67 @@ actionSelector() {
 
 # start server
 start() {
-  echo "[ZOMBOB] > start"
+  echo "[ ZOMBOB ] > start"
   $COMMANDS_PATH/start.sh $SERVER_PATH
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
-  echo "[ZOMBOB] > Server is up and running"
+  echo "[ ZOMBOB ] > Server is up and running"
 }
 
 # stop server
 stop() {
-  echo "[ZOMBOB] > stop"
+  echo "[ ZOMBOB ] > Server stop started"
   $COMMANDS_PATH/stop.sh "$1"
+  echo "[ ZOMBOB ] > Server stop completed"
 }
 
 # restart server
 restart() {
-  echo "[ZOMBOB] > restart"
+  echo "[ ZOMBOB ] > Server restart started"
   $COMMANDS_PATH/restart.sh
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
   actionSelector "stop" "n"
   actionSelector "create-backup"
   actionSelector "start"
+  echo "[ ZOMBOB ] > Server restart completed"
 }
 
 # reset server
 reset() {
-  echo "[ZOMBOB] > reset"
+  echo "[ ZOMBOB ] > Server reset started"
   $COMMANDS_PATH/reset.sh $DATABASE_PATH $SAVES_PATH
+  echo "[ ZOMBOB ] > Server reset completed"
 }
 
 # update server
 update() {
-  echo "[ZOMBOB] > update"
+  echo "[ ZOMBOB ] > Server update started"
   $COMMANDS_PATH/update.sh $STEAMCMD_PATH
+  echo "[ ZOMBOB ] > Server update completed"
 }
 
 # create backup
 createBackup() {
-  echo "[ZOMBOB] > create backup"
+  echo "[ ZOMBOB ] > Server backup started"
   $COMMANDS_PATH/create-backup.sh $SAVES_PATH $DATABASE_PATH $BACKUPS_PATH
+  echo "[ ZOMBOB ] > Server backup completed"
 }
 
 # restore backup
 restoreBackup() {
-  echo "[ZOMBOB] > restore backup"
+  echo "[ ZOMBOB ] > Server restore backup started"
+  echo "[ ZOMBOB ] > Server backup restored"
 }
 
 # update mods
 updateMods() {
-  echo "[ZOMBOB] > update mods"
+  echo "[ ZOMBOB ] > Server update mods started"
   actionSelector "stop"
   actionSelector "create-backup"
   $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH
   actionSelector "start"
+  echo "[ ZOMBOB ] > Server mods updated"
 }
 
 actionSelector "$1"
