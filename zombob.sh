@@ -35,11 +35,13 @@ actionSelector() {
       restoreBackup ;;
     "update-mods")
       updateMods ;;
+    "send-message")
+      sendMessage "$2" ;;
     "exit")
       echo "Goodbye!"
       exit ;;
     *)
-      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods] or [exit]"
+      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message] or [exit]"
       read -r input
       actionSelector "$input"
   esac
@@ -101,6 +103,12 @@ updateMods() {
   actionSelector "create-backup"
   $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH
   actionSelector "start"
+}
+
+sendMessage() {
+  echo "[ZOMBOB] > Send Message started"
+  $COMMANDS_PATH/send-message.sh "$1"
+  echo "[ZOMBOB] > Send Message completed"
 }
 
 actionSelector "$1"
