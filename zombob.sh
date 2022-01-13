@@ -15,6 +15,7 @@ ZOMBOID_PATH="${HOME}/Zomboid"
 DATABASE_PATH="${ZOMBOID_PATH}/db/servertest.db"
 SAVES_PATH="${ZOMBOID_PATH}/Saves/Multiplayer/servertest"
 BACKUPS_PATH="${ZOMBOID_PATH}/Backups"
+SERVER_CONSOLE="${ZOMBOID_PATH}/server-console.txt"
 
 # input handler
 actionSelector() {
@@ -37,11 +38,13 @@ actionSelector() {
       updateMods ;;
     "send-message")
       sendMessage "$2" ;;
+    "count-players")
+      countPlayers ;;
     "exit")
       echo "Goodbye!"
       exit ;;
     *)
-      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message] or [exit]"
+      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players] or [exit]"
       read -r input
       actionSelector "$input"
   esac
@@ -109,6 +112,13 @@ sendMessage() {
   echo "[ZOMBOB] > Send Message started"
   $COMMANDS_PATH/send-message.sh "$1"
   echo "[ZOMBOB] > Send Message completed"
+}
+
+# count players
+countPlayers() {
+  echo "[ ZOMBOB ] > Count Players started"
+  $COMMANDS_PATH/count-players.sh $SERVER_CONSOLE
+  echo "[ ZOMBOB ] > Count Players stopped"
 }
 
 actionSelector "$1"
