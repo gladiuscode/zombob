@@ -18,9 +18,13 @@ printAskToDisconnect() {
 }
 
 printRestartInMinutes "10-minuti"
-sleep 5m
+sleep 3m
+printRestartInMinutes "7-minuti"
+sleep 2m
 printRestartInMinutes "5-minuti"
-sleep 4m
+sleep 2m
+printRestartInMinutes "3-minuti"
+sleep 2m
 
 printAskToDisconnect
 sleep 1m
