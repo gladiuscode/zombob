@@ -45,7 +45,23 @@ then
 
   echo "Waiting 5 minutes..."
   executeCommand "${MESSAGE}5-minuti"
-  sleep 4m
+  sleep 1m
+
+  echo "Waiting 4 minutes..."
+  executeCommand "${MESSAGE}4-minuti"
+  sleep 1m
+
+  echo "Waiting 3 minutes..."
+  executeCommand "${MESSAGE}3-minuti"
+  sleep 1m
+
+  echo "Waiting 2 minutes..."
+  executeCommand "${MESSAGE}2-minuti"
+  sleep 1m
+
+  echo "Waiting 1 minutes..."
+  executeCommand "${MESSAGE}1-minuto"
+  sleep 1m
 
   echo "Saving..."
   executeCommand "Per-favore-disconnettiti-per-un-paio-di-minuti"
