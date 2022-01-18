@@ -131,4 +131,4 @@ countPlayers() {
   echo "[ ZOMBOB ] > Count Players stopped"
 }
 
-actionSelector "$1"
+actionSelector "$1" "$2"
