@@ -11,10 +11,10 @@ ARG=$1
 computeServerMessage() {
   if [ "$ARG" == $TO_UPDATE ]
   then
-    MESSAGE="servermsg Il-server-si-riavvierà-per-aggiornamento-mods-tra-"
+    MESSAGE="servermsg \"Il server si riavvierà per aggiornamento mods tra "
     return
   fi
-  MESSAGE="servermsg Il-server-si-spegnerà-tra-"
+  MESSAGE="servermsg \"Il server si spegnerà tra "
 }
 
 killServer() {
@@ -44,39 +44,39 @@ then
   computeServerMessage
 
   echo "Waiting 5 minutes..."
-  executeCommand "${MESSAGE}5-minuti"
+  executeCommand "${MESSAGE}5 minuti\""
   sleep 1m
 
   echo "Waiting 4 minutes..."
-  executeCommand "${MESSAGE}4-minuti"
+  executeCommand "${MESSAGE}4 minuti\""
   sleep 1m
 
   echo "Waiting 3 minutes..."
-  executeCommand "${MESSAGE}3-minuti"
+  executeCommand "${MESSAGE}3 minuti\""
   sleep 1m
 
   echo "Waiting 2 minutes..."
-  executeCommand "${MESSAGE}2-minuti"
+  executeCommand "${MESSAGE}2 minuti\""
   sleep 1m
 
   echo "Waiting 1 minutes..."
-  executeCommand "${MESSAGE}1-minuto"
+  executeCommand "${MESSAGE}1 minuto\""
   sleep 1m
 
   echo "Saving..."
-  executeCommand "Per-favore-disconnettiti-per-un-paio-di-minuti"
+  executeCommand "\"Per favore disconnettiti per un paio di minuti\""
   save
   sleep 1m
 
-  executeCommand "${MESSAGE}5-secondi"
+  executeCommand "${MESSAGE}5 secondi\""
   sleep 1s
-  executeCommand "${MESSAGE}4-secondi"
+  executeCommand "${MESSAGE}4 secondi\""
   sleep 1s
-  executeCommand "${MESSAGE}3-secondi"
+  executeCommand "${MESSAGE}3 secondi\""
   sleep 1s
-  executeCommand "${MESSAGE}2-secondi"
+  executeCommand "${MESSAGE}2 secondi\""
   sleep 1s
-  executeCommand "${MESSAGE}1-secondo"
+  executeCommand "${MESSAGE}1 secondo\""
   sleep 1s
 
   echo "Quitting..."
