@@ -8,22 +8,22 @@ executeCommand() {
 }
 
 printRestartInMinutes() {
-  msg="Server-restart-in-$1"
+  msg="\"Server restart in $1\""
   executeCommand "servermsg $msg"
 }
 
 printAskToDisconnect() {
-  msg="Per-favore-disconnettiti-per-un-paio-di-minuti"
+  msg="\"Per favore disconnettiti per un paio di minuti\""
   executeCommand "servermsg $msg"
 }
 
-printRestartInMinutes "10-minuti"
+printRestartInMinutes "10 minuti"
 sleep 3m
-printRestartInMinutes "7-minuti"
+printRestartInMinutes "7 minuti"
 sleep 2m
-printRestartInMinutes "5-minuti"
+printRestartInMinutes "5 minuti"
 sleep 2m
-printRestartInMinutes "3-minuti"
+printRestartInMinutes "3 minuti"
 sleep 2m
 
 printAskToDisconnect
