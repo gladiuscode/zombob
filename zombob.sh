@@ -3,7 +3,6 @@ HOME=~/
 
 ZOMBOB_PATH="${HOME}zombob"
 COMMANDS_PATH="${ZOMBOB_PATH}/commands"
-ENV_FILE_PATH="${ZOMBOB_PATH}/env.txt"
 
 STEAMCMD_PATH="${HOME}steamcmd"
 
@@ -14,6 +13,7 @@ MODS_PATH="${WORKSHOP_PATH}/content/108600"
 
 ZOMBOID_PATH="${HOME}Zomboid"
 SERVER_INI_PATH="${ZOMBOID_PATH}/Server/servertest.ini"
+ENV_FILE_PATH="${ZOMBOB_PATH}/Server/env.txt"
 STEAM_API_RESPONSE="${ZOMBOID_PATH}/Server/steam_response.txt"
 DATABASE_PATH="${ZOMBOID_PATH}/db/servertest.db"
 SAVES_PATH="${ZOMBOID_PATH}/Saves/Multiplayer/servertest"
