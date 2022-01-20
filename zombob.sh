@@ -1,21 +1,34 @@
 #!/bin/bash
 HOME=~/
 
-ZOMBOB_PATH="${HOME}/zombob"
+ZOMBOB_PATH="${HOME}zombob"
 COMMANDS_PATH="${ZOMBOB_PATH}/commands"
+ENV_FILE_PATH="${ZOMBOB_PATH}/env.txt"
 
-STEAMCMD_PATH="${HOME}/steamcmd"
+STEAMCMD_PATH="${HOME}steamcmd"
 
-SERVER_PATH="${HOME}/.steam/steamcmd/pzserver"
+SERVER_PATH="${HOME}.steam/steamcmd/pzserver"
 WORKSHOP_PATH="${SERVER_PATH}/steamapps/workshop"
 MODS_CONFIG_PATH="${WORKSHOP_PATH}/appworkshop_108600.acf"
 MODS_PATH="${WORKSHOP_PATH}/content/108600"
 
-ZOMBOID_PATH="${HOME}/Zomboid"
+ZOMBOID_PATH="${HOME}Zomboid"
+SERVER_INI_PATH="${ZOMBOID_PATH}/Server/servertest.ini"
+STEAM_API_RESPONSE="${ZOMBOID_PATH}/Server/steam_response.txt"
 DATABASE_PATH="${ZOMBOID_PATH}/db/servertest.db"
 SAVES_PATH="${ZOMBOID_PATH}/Saves/Multiplayer/servertest"
 BACKUPS_PATH="${ZOMBOID_PATH}/Backups"
 SERVER_CONSOLE="${ZOMBOID_PATH}/server-console.txt"
+
+setStartupDate() {
+  STARTUP_DATE=$( date +"%s" )
+  touch $ENV_FILE_PATH
+  echo "$STARTUP_DATE" > "$ENV_FILE_PATH"
+}
+
+resetStartupDate() {
+  rm "$ENV_FILE_PATH"
+}
 
 # input handler
 actionSelector() {
@@ -40,6 +53,8 @@ actionSelector() {
       sendMessage "$2" ;;
     "count-players")
       countPlayers ;;
+    "check-mods-update")
+      checkModsUpdate ;;
     "exit")
       echo "[ ZOMBOB ] > Goodbye!"
       exit ;;
@@ -59,6 +74,8 @@ start() {
   $COMMANDS_PATH/start.sh $SERVER_PATH
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
+  resetStartupDate
+  setStartupDate
   echo "[ ZOMBOB ] > Server is up and running"
 }
 
@@ -118,6 +135,7 @@ updateMods() {
   echo "[ ZOMBOB ] > Server mods updated"
 }
 
+# send message
 sendMessage() {
   echo "[ZOMBOB] > Send Message started"
   $COMMANDS_PATH/send-message.sh "$1"
@@ -129,6 +147,16 @@ countPlayers() {
   echo "[ ZOMBOB ] > Count Players started"
   $COMMANDS_PATH/count-players.sh $SERVER_CONSOLE
   echo "[ ZOMBOB ] > Count Players stopped"
+}
+
+# check mods update
+checkModsUpdate() {
+  echo "[ ZOMBOB ] > Check mods update started"
+  $COMMANDS_PATH/check-mods.sh $SERVER_INI_PATH $ENV_FILE_PATH $STEAM_API_RESPONSE
+  CAN_KEEP_GOING=$?
+  [ $CAN_KEEP_GOING == 0 ] && echo "Mods are up to date" && exit
+  actionSelector "update-mods"
+  echo "[ ZOMBOB ] > Check mods update stopped"
 }
 
 actionSelector "$1" "$2"
