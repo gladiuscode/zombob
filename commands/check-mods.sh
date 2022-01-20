@@ -52,7 +52,7 @@ checkRestartNeeded() {
   while read -r LINE; do
     TIMESTAMP=$( echo "$LINE" | tr -dc '0-9' )
     WORKSHOP_ITEM_LAST_UPDATE=$( date -d "@$TIMESTAMP" +"%s" )
-    if [ $SERVER_STARTUP_DATE -lt $WORKSHOP_ITEM_LAST_UPDATE ]
+    if [ "$SERVER_STARTUP_DATE" -lt "$WORKSHOP_ITEM_LAST_UPDATE" ]
     then
       exit 1
     fi
