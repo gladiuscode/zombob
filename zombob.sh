@@ -53,8 +53,8 @@ actionSelector() {
       sendMessage "$2" ;;
     "count-players")
       countPlayers ;;
-    "check-mods-update")
-      checkModsUpdate ;;
+    "check-mods")
+      checkMods ;;
     "exit")
       echo "[ ZOMBOB ] > Goodbye!"
       exit ;;
@@ -62,7 +62,7 @@ actionSelector() {
       echo "****************************************************************"
       echo "****                        ZOMBOB                          ****"
       echo "****************************************************************"
-      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players] or [exit]"
+      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods] or [exit]"
       read -r input
       actionSelector "$input"
   esac
@@ -150,7 +150,7 @@ countPlayers() {
 }
 
 # check mods update
-checkModsUpdate() {
+checkMods() {
   echo "[ ZOMBOB ] > Check mods update started"
   $COMMANDS_PATH/check-mods.sh $SERVER_INI_PATH $ENV_FILE_PATH $STEAM_API_RESPONSE
   CAN_KEEP_GOING=$?
