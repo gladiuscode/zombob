@@ -89,7 +89,7 @@ stop() {
 # restart server
 restart() {
   echo "[ ZOMBOB ] > Server restart started"
-  $COMMANDS_PATH/restart.sh $1
+  $COMMANDS_PATH/restart.sh "$1"
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
   actionSelector "stop" "skipWait"
