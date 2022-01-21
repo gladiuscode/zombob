@@ -3,6 +3,8 @@
 serverProcess=$(pgrep -f start-server)
 [ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit 0
 
+TO_UPDATE=$1
+
 executeCommand() {
   screen -S server -X stuff "$1^M"
 }
@@ -17,14 +19,33 @@ printAskToDisconnect() {
   executeCommand "servermsg $msg"
 }
 
-printRestartInMinutes "10 minuti"
-sleep 3m
-printRestartInMinutes "7 minuti"
-sleep 2m
+if [ -z "$TO_UPDATE" ]
+then
+  printRestartInMinutes "10 minuti"
+  sleep 3m
+  printRestartInMinutes "7 minuti"
+  sleep 2m
+  printRestartInMinutes "5 minuti"
+  sleep 2m
+  printRestartInMinutes "3 minuti"
+  sleep 2m
+
+  printAskToDisconnect
+  sleep 1m
+
+  exit 1
+fi
+
 printRestartInMinutes "5 minuti"
-sleep 2m
+sleep 1m
+printRestartInMinutes "4 minuti"
+sleep 1m
 printRestartInMinutes "3 minuti"
-sleep 2m
+sleep 1m
+printRestartInMinutes "2 minuti"
+sleep 1m
+printRestartInMinutes "1 minuto"
+sleep 1m
 
 printAskToDisconnect
 sleep 1m
