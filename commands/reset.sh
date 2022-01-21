@@ -1,8 +1,5 @@
 #!/bin/bash
 
-serverProcess=$(pgrep -f start-server)
-[ -n "$serverProcess" ] && echo "Server is running. Can't wipe" && exit 0
-
 DATABASE_PATH=$1
 SAVES_PATH=$2
 

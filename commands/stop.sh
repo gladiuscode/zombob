@@ -1,8 +1,5 @@
 #!/bin/bash
 
-serverProcess=$(pgrep -f start-server)
-[ -z "$serverProcess" ] && echo "Server is already down" && exit 0
-
 TO_STOP="toStop"
 TO_UPDATE="toUpdate"
 SKIP_WAIT="skipWait"

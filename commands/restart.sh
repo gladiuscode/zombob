@@ -1,8 +1,5 @@
 #!/bin/bash
 
-serverProcess=$(pgrep -f start-server)
-[ -z "$serverProcess" ] && echo "Server is down, can't restart" && exit 0
-
 TO_UPDATE=$1
 
 executeCommand() {
