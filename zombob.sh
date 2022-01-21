@@ -38,7 +38,7 @@ actionSelector() {
     "stop")
       stop "$2" ;;
     "restart")
-      restart ;;
+      restart "$2" ;;
     "reset")
       reset ;;
     "update")
@@ -89,7 +89,7 @@ stop() {
 # restart server
 restart() {
   echo "[ ZOMBOB ] > Server restart started"
-  $COMMANDS_PATH/restart.sh
+  $COMMANDS_PATH/restart.sh $1
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Something went wrong" && exit
   actionSelector "stop" "skipWait"
@@ -155,7 +155,7 @@ checkMods() {
   $COMMANDS_PATH/check-mods.sh $SERVER_INI_PATH $ENV_FILE_PATH $STEAM_API_RESPONSE
   CAN_KEEP_GOING=$?
   [ $CAN_KEEP_GOING == 0 ] && echo "Mods are up to date" && exit
-  actionSelector "update-mods"
+  actionSelector "restart" "toUpdate"
   echo "[ ZOMBOB ] > Check mods update stopped"
 }
 
