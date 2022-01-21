@@ -65,6 +65,7 @@ createCurlCommand
 
 RESPONSE=$( eval "$CURL_COMMAND" )
 FILTERED_RESPONSE=$( grep -Eo "\"time_updated\":[0-9]+" <<< "$RESPONSE" )
+rm "$STEAM_API_RESPONSE"
 echo "$FILTERED_RESPONSE" > "$STEAM_API_RESPONSE"
 
 checkRestartNeeded "$FILTERED_RESPONSE"
