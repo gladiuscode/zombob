@@ -52,7 +52,7 @@ checkRestartNeeded() {
   while read -r LINE; do
     TIMESTAMP=$( echo "$LINE" | tr -dc '0-9' )
     WORKSHOP_ITEM_LAST_UPDATE=$( date -d "@$TIMESTAMP" +"%s" )
-    if [ $SERVER_STARTUP_DATE -lt $WORKSHOP_ITEM_LAST_UPDATE ]
+    if [ "$SERVER_STARTUP_DATE" -lt "$WORKSHOP_ITEM_LAST_UPDATE" ]
     then
       exit 1
     fi
@@ -65,6 +65,7 @@ createCurlCommand
 
 RESPONSE=$( eval "$CURL_COMMAND" )
 FILTERED_RESPONSE=$( grep -Eo "\"time_updated\":[0-9]+" <<< "$RESPONSE" )
+rm "$STEAM_API_RESPONSE"
 echo "$FILTERED_RESPONSE" > "$STEAM_API_RESPONSE"
 
 checkRestartNeeded "$FILTERED_RESPONSE"
