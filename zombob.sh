@@ -3,29 +3,9 @@
 # ====================
 # CONFIGURATION
 # ====================
-HOME=~/
-
-# Zombob Configuration
-ZOMBOB_PATH="${HOME}zombob"
-COMMANDS_PATH="${ZOMBOB_PATH}/commands"
-HELPERS_PATH="${ZOMBOB_PATH}/helpers"
-
-STEAMCMD_PATH="${HOME}steamcmd"
-
-# Zombob Configuration
-SERVER_PATH="${HOME}.steam/steamcmd/pzserver"
-WORKSHOP_PATH="${SERVER_PATH}/steamapps/workshop"
-MODS_CONFIG_PATH="${WORKSHOP_PATH}/appworkshop_108600.acf"
-MODS_PATH="${WORKSHOP_PATH}/content/108600"
-
-ZOMBOID_PATH="${HOME}Zomboid"
-SERVER_INI_PATH="${ZOMBOID_PATH}/Server/servertest.ini"
-ENV_FILE_PATH="${ZOMBOID_PATH}/Server/env.txt"
-STEAM_API_RESPONSE="${ZOMBOID_PATH}/Server/steam_response.txt"
-DATABASE_PATH="${ZOMBOID_PATH}/db/servertest.db"
-SAVES_PATH="${ZOMBOID_PATH}/Saves/Multiplayer/servertest"
-BACKUPS_PATH="${ZOMBOID_PATH}/Backups"
-SERVER_CONSOLE="${ZOMBOID_PATH}/server-console.txt"
+# shellcheck source=home/steam/zombob/config.cfg
+CONFIGURATION_PATH="$HOME/zombob/config.cfg"
+source "$CONFIGURATION_PATH"
 
 # ====================
 # HELPERS
@@ -49,7 +29,7 @@ checkServerStatus() {
 
 setStartupDate() {
   STARTUP_DATE=$( date +"%s" )
-  touch $ENV_FILE_PATH
+  touch "$ENV_FILE_PATH"
   echo "$STARTUP_DATE" > "$ENV_FILE_PATH"
 }
 
@@ -102,7 +82,7 @@ start() {
 
   checkServerStatus "up"
 
-  $COMMANDS_PATH/start.sh $SERVER_PATH
+  $COMMANDS_PATH/start.sh "$SERVER_PATH"
 
   resetStartupDate
   setStartupDate
@@ -135,7 +115,7 @@ reset() {
 
   checkServerStatus "up"
 
-  $COMMANDS_PATH/reset.sh $DATABASE_PATH $SAVES_PATH
+  $COMMANDS_PATH/reset.sh "$DATABASE_PATH" "$SAVES_PATH"
   echo "[ ZOMBOB ] > Server reset completed"
 }
 
@@ -144,13 +124,13 @@ update() {
 
   checkServerStatus "up"
 
-  $COMMANDS_PATH/update.sh $STEAMCMD_PATH
+  $COMMANDS_PATH/update.sh "$STEAMCMD_PATH"
   echo "[ ZOMBOB ] > Server update completed"
 }
 
 createBackup() {
   echo "[ ZOMBOB ] > Server backup started"
-  $COMMANDS_PATH/create-backup.sh $SAVES_PATH $DATABASE_PATH $BACKUPS_PATH
+  $COMMANDS_PATH/create-backup.sh  "$SAVES_PATH" "$DATABASE_PATH" "$BACKUPS_PATH"
   echo "[ ZOMBOB ] > Server backup completed"
 }
 
@@ -163,7 +143,7 @@ updateMods() {
   echo "[ ZOMBOB ] > Server update mods started"
   actionSelector "stop" "toUpdate"
   actionSelector "create-backup"
-  $COMMANDS_PATH/update-mods.sh $MODS_CONFIG_PATH $MODS_PATH
+  $COMMANDS_PATH/update-mods.sh "$MODS_CONFIG_PATH" "$MODS_PATH"
   actionSelector "start"
   echo "[ ZOMBOB ] > Server mods updated"
 }
@@ -177,7 +157,7 @@ sendMessage() {
 
 countPlayers() {
   echo "[ ZOMBOB ] > Count Players started"
-  $COMMANDS_PATH/count-players.sh $SERVER_CONSOLE
+  $COMMANDS_PATH/count-players.sh "$SERVER_CONSOLE"
   echo "[ ZOMBOB ] > Count Players stopped"
 }
 
@@ -186,7 +166,7 @@ checkMods() {
 
   checkServerStatus "down"
 
-  $COMMANDS_PATH/check-mods.sh $SERVER_INI_PATH $ENV_FILE_PATH $STEAM_API_RESPONSE
+  $COMMANDS_PATH/check-mods.sh "$SERVER_INI_PATH" "$ENV_FILE_PATH" "$STEAM_API_RESPONSE"
   SHOULD_UPDATE_MODS=$?
   [ $SHOULD_UPDATE_MODS -eq 0 ] && echo "Mods are up to date" && exit
 
