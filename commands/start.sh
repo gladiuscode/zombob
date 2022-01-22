@@ -1,8 +1,5 @@
 #!/bin/bash
 
-serverProcess=$(pgrep -f start-server)
-[ -n "$serverProcess" ] && echo "Server is already up and running" && exit 0
-
 SERVER_PATH=$1
 
 executeCommand() {
@@ -15,5 +12,3 @@ screen -dmS server
 
 executeCommand "cd $SERVER_PATH"
 executeCommand "./start-server.sh"
-
-exit 1
