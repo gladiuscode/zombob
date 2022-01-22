@@ -1,14 +1,16 @@
 #!/bin/bash
 
-SERVER_PATH=$1
+start() {
+  echo "[ ZOMBOB ] > start"
 
-executeCommand() {
-  screen -S server -X stuff "$1^M"
+  checkServerStatus "up"
+
+  screen -dmS server
+  sendServerCommand "cd $SERVER_PATH"
+  sendServerCommand "./start-server.sh"
+
+  resetStartupDate
+  setStartupDate
+
+  echo "[ ZOMBOB ] > Server is up and running"
 }
-
-screen -ls | grep server | cut -d. -f1 | awk '{print $1}' | xargs kill
-
-screen -dmS server
-
-executeCommand "cd $SERVER_PATH"
-executeCommand "./start-server.sh"

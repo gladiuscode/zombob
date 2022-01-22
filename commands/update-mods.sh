@@ -1,12 +1,18 @@
 #!/bin/bash
 
-MODS_CONFIG_PATH=$1
-MODS_PATH=$2
+updateMods() {
+  echo "[ ZOMBOB ] > Server update mods started"
 
-# delete config file
-echo "Deleting mods config"
-rm "$MODS_CONFIG_PATH"
+  actionSelector "stop" "toUpdate"
+  actionSelector "create-backup"
 
-# delete all mods
-echo "Deleting mods"
-rm -rf "$MODS_PATH"
+  echo "Deleting mods config"
+  rm "$MODS_CONFIG_PATH"
+
+  echo "Deleting mods"
+  rm -rf "$MODS_PATH"
+
+  actionSelector "start"
+
+  echo "[ ZOMBOB ] > Server mods updated"
+}

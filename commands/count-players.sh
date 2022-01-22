@@ -1,11 +1,14 @@
 #!/bin/bash
 
-CONSOLE_PATH=$1
+countPlayers() {
+  echo "[ ZOMBOB ] > Count Players started"
 
-screen -S server -X stuff "players^M"
+  sendServerCommand "players"
+  sleep 10s
 
-sleep 10s
+  PLAYERS=$(grep -o "Players.*" "$SERVER_CONSOLE" | tail -1)
 
-PLAYERS=$(grep -o "Players.*" "$CONSOLE_PATH" | tail -1)
+  echo "[ ZOMBOB ] > $PLAYERS"
 
-echo "[ ZOMBOB ] > $PLAYERS"
+  echo "[ ZOMBOB ] > Count Players stopped"
+}

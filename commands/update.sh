@@ -1,7 +1,11 @@
 #!/bin/bash
 
-STEAMCMD_PATH=$1
+update() {
+  echo "[ ZOMBOB ] > Server update started"
 
-$STEAMCMD_PATH +login anonymous +app_update 380870 validate +quit
+  checkServerStatus "up"
 
-echo "Server update completed"
+  $STEAMCMD_PATH +login anonymous +app_update 380870 validate +quit
+
+  echo "[ ZOMBOB ] > Server update completed"
+}

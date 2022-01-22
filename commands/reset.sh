@@ -1,21 +1,23 @@
 #!/bin/bash
 
-DATABASE_PATH=$1
-SAVES_PATH=$2
+reset() {
+  echo "[ ZOMBOB ] > Server reset started"
 
-echo "Are you sure? y/N"
-read -r confirm
+  checkServerStatus "up"
 
-if [ -z "$confirm" ] || [ "$confirm" == "n" ] || [ "$confirm" == "N" ]
-then
-  echo "Reset aborted"
-  exit 0
-fi
+  echo "Are you sure? y/N"
+  read -r confirm
 
-echo "Deleting database"
-rm "$DATABASE_PATH"
+  if [ -z "$confirm" ] || [ "$confirm" == "n" ] || [ "$confirm" == "N" ]
+  then
+    echo "Reset aborted"
+  else
+   echo "Deleting database"
+   rm "$DATABASE_PATH"
 
-echo "Deleting saves"
-rm -rf "$SAVES_PATH"
+   echo "Deleting saves"
+   rm -rf "$SAVES_PATH"
 
-exit 1
+   echo "[ ZOMBOB ] > Server reset completed"
+  fi
+}

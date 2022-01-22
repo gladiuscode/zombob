@@ -1,18 +1,18 @@
 #!/bin/bash
 
-ARG=$1
+sendMessage() {
+  echo "[ZOMBOB] > Send Message started"
 
-executeCommand() {
-  echo "[ ZOMBOB ] > Message sent > $1"
-  screen -S server -X stuff "servermsg \"$1\"^M"
+  checkServerStatus "down"
+
+  if [ -z "$1" ]
+  then
+    echo "[ ZOMBOB ] > Please write your message: "
+    read -r MESSAGE
+    sendServerMessage "$MESSAGE"
+  else
+    sendServerMessage "$1"
+  fi
+
+  echo "[ZOMBOB] > Send Message completed"
 }
-
-if [ -z "$ARG" ]
-then
-  echo "[ ZOMBOB ] > Please write your message: "
-  read -r MESSAGE
-  executeCommand "$MESSAGE"
-  exit 1
-fi
-
-executeCommand "$ARG"
