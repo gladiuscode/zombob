@@ -10,32 +10,8 @@ source "$CONFIGURATION_PATH"
 # ====================
 # HELPERS
 # ====================
-checkServerStatus() {
-  STATUS_TO_CHECK=$1
-
-  $HELPERS_PATH/server-status.sh
-  STATUS=$?
-
-  if [ "$STATUS_TO_CHECK" == "up" ] && [ $STATUS -eq 1 ]
-  then
-    echo "[ ZOMBOB : ERROR ] > Server is up" && exit
-  fi
-
-  if [ "$STATUS_TO_CHECK" == "down" ] && [ $STATUS -eq 0 ]
-  then
-    echo "[ ZOMBOB : ERROR ] > Server is down" && exit
-  fi
-}
-
-setStartupDate() {
-  STARTUP_DATE=$( date +"%s" )
-  touch "$ENV_FILE_PATH"
-  echo "$STARTUP_DATE" > "$ENV_FILE_PATH"
-}
-
-resetStartupDate() {
-  rm "$ENV_FILE_PATH"
-}
+source "$HELPERS_PATH/server-status.sh"
+source "$HELPERS_PATH/startup-date.sh"
 
 # ====================
 # MAIN INPUT HANDLER

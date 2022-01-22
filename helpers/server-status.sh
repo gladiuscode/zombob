@@ -1,11 +1,19 @@
 #!/bin/bash
 
-serverProcess=$(pgrep -f start-server)
+checkServerStatus() {
+  STATUS_TO_CHECK=$1
 
-if [ -n "$serverProcess" ]
-then
-  echo "Server is up"
-  exit 1
-fi
+  serverProcess=$(pgrep -f start-server)
+  STATUS=0
+  [ -n "$serverProcess" ] && STATUS=1 || STATUS=0
 
-exit 0
+  if [ "$STATUS_TO_CHECK" == "up" ] && [ $STATUS -eq 1 ]
+  then
+    echo "[ ZOMBOB : ERROR ] > Server is up" && exit
+  fi
+
+  if [ "$STATUS_TO_CHECK" == "down" ] && [ $STATUS -eq 0 ]
+  then
+    echo "[ ZOMBOB : ERROR ] > Server is down" && exit
+  fi
+}
