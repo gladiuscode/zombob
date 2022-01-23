@@ -4,6 +4,7 @@ start() {
   echo "[ ZOMBOB ] > start"
 
   checkServerStatus "up"
+  killServer
 
   screen -dmS "$SCREEN_SERVER_NAME"
   sendServerCommand "cd $SERVER_PATH"
