@@ -3,7 +3,7 @@
 checkServerStatus() {
   STATUS_TO_CHECK=$1
 
-  serverProcess=$(pgrep -f start-server)
+  serverProcess=$(pgrep -f "./start-server.sh -servername $SERVER_NAME")
   STATUS=0
   [ -n "$serverProcess" ] && STATUS=1 || STATUS=0
 

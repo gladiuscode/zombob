@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sendServerCommand() {
-  screen -S server -X stuff "$1^M"
+  screen -S "$SCREEN_SERVER_NAME" -X stuff "$1^M"
 }
 
 sendServerMessage() {
