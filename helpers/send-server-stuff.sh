@@ -6,5 +6,5 @@ sendServerCommand() {
 
 sendServerMessage() {
   MESSAGE="servermsg \"$1\""
-  sendScreenCommand "$MESSAGE"
+  sendServerCommand "$MESSAGE"
 }
