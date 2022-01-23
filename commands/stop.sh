@@ -36,7 +36,7 @@ stop() {
   then
     save
     quit
-    killServer
+    killServerScreen
   else
     computeServerMessage
 
@@ -77,7 +77,7 @@ stop() {
     sleep 1s
 
     quit
-    killServer
+    killServerScreen
   fi
 
   echo "[ ZOMBOB ] > Server stop completed"

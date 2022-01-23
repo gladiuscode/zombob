@@ -1,7 +1,7 @@
 #!/bin/bash
 
-killServer() {
-  SCREEN_PROCESS=$( pgrep -f "SCREEN -S $SERVER_NAME" )
+killServerScreen() {
+  SCREEN_PROCESS=$( pgrep -f "SCREEN.*$SERVER_NAME" )
 
   if [ -z "$SCREEN_PROCESS" ]
   then
