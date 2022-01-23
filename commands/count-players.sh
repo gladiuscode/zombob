@@ -3,6 +3,8 @@
 countPlayers() {
   echo "[ ZOMBOB ] > Count Players started"
 
+  checkServerStatus "down"
+
   sendServerCommand "players"
   sleep 10s
 
