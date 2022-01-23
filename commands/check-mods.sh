@@ -66,7 +66,9 @@ checkMods() {
   RESPONSE=$( eval "$CURL_COMMAND" )
   FILTERED_RESPONSE=$( grep -Eo "\"time_updated\":[0-9]+" <<< "$RESPONSE" )
 
-  rm "$STEAM_API_RESPONSE"
+  if test -f "$STEAM_API_RESPONSE"; then
+      rm "$STEAM_API_RESPONSE"
+  fi
   echo "$FILTERED_RESPONSE" > "$STEAM_API_RESPONSE"
 
   checkRestartNeeded "$FILTERED_RESPONSE"
