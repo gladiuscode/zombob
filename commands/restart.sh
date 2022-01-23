@@ -9,6 +9,12 @@ restart() {
 
   printRestartInMinutes() {
     MESSAGE="Server restart in $1"
+
+    if [ "$TO_UPDATE" == "toUpdate" ]
+    then
+      MESSAGE="Aggiornamento mods necessario. Restart in $1"
+    fi
+
     sendServerMessage "$MESSAGE"
   }
 
