@@ -1,7 +1,7 @@
 #!/bin/bash
 
 reset() {
-  echo "[ ZOMBOB ] > Server reset started"
+  echo "[ ZOMBOB : INFO ] > Server reset started"
 
   checkServerStatus "up"
 
@@ -18,6 +18,6 @@ reset() {
    echo "Deleting saves"
    rm -rf "$SAVES_PATH"
 
-   echo "[ ZOMBOB ] > Server reset completed"
+   echo "[ ZOMBOB : INFO ] > Server reset completed"
   fi
 }

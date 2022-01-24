@@ -41,8 +41,8 @@ actionSelector() {
     "create-backup")
       createBackup ;;
     "restore-backup")
-      echo "[ ZOMBOB ] > Server restore backup started"
-      echo "[ ZOMBOB ] > Server backup restored"
+      echo "[ ZOMBOB : INFO ] > Server restore backup started"
+      echo "[ ZOMBOB : INFO ] > Server backup restored"
       ;;
     "update-mods")
       updateMods ;;
@@ -53,7 +53,7 @@ actionSelector() {
     "check-mods")
       checkMods ;;
     "exit")
-      echo "[ ZOMBOB ] > Goodbye!"
+      echo "[ ZOMBOB : INFO ] > Goodbye!"
       exit ;;
     *)
       echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods] or [exit]"
@@ -63,7 +63,7 @@ actionSelector() {
 }
 
 echo "****************************************************************"
-echo "****                        ZOMBOB v2                       ****"
+echo "****                        ZOMBOB                          ****"
 echo "****************************************************************"
 
 actionSelector "$1" "$2"

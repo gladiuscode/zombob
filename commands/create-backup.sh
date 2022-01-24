@@ -1,7 +1,7 @@
 #!/bin/bash
 
 createBackup() {
-  echo "[ ZOMBOB ] > Server backup started"
+  echo "[ ZOMBOB : INFO ] > Server backup started"
 
   BACKUP_DATE=$(date +"%m-%d-%y-%H-%M-%S")
   BACKUP_FOLDER="$BACKUPS_PATH/$BACKUP_DATE"
@@ -17,5 +17,5 @@ createBackup() {
   tar -zcf "$BACKUP_FOLDER_NAME" "$SAVES_PATH" "$DATABASE_PATH"
   echo "Backup created"
 
-  echo "[ ZOMBOB ] > Server backup completed"
+  echo "[ ZOMBOB : INFO ] > Server backup completed"
 }

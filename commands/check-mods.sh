@@ -1,7 +1,7 @@
 #!/bin/bash
 
 checkMods() {
-  echo "[ ZOMBOB ] > Check mods update started"
+  echo "[ ZOMBOB : INFO ] > Check mods update started"
 
   checkServerStatus "down"
 
@@ -80,7 +80,7 @@ checkMods() {
     actionSelector "restart" "toUpdate"
   fi
 
-  echo "[ ZOMBOB ] > Check mods update stopped"
+  echo "[ ZOMBOB : INFO ] > Check mods update stopped"
 }
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 stop() {
-  echo "[ ZOMBOB ] > Server stop started"
+  echo "[ ZOMBOB : INFO ] > Server stop started"
 
   checkServerStatus "down"
 
@@ -80,5 +80,5 @@ stop() {
     killServerScreen
   fi
 
-  echo "[ ZOMBOB ] > Server stop completed"
+  echo "[ ZOMBOB : INFO ] > Server stop completed"
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 updateMods() {
-  echo "[ ZOMBOB ] > Server update mods started"
+  echo "[ ZOMBOB : INFO ] > Server update mods started"
 
   actionSelector "stop" "toUpdate"
   actionSelector "create-backup"
@@ -14,5 +14,5 @@ updateMods() {
 
   actionSelector "start"
 
-  echo "[ ZOMBOB ] > Server mods updated"
+  echo "[ ZOMBOB : INFO ] > Server mods updated"
 }
