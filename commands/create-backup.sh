@@ -19,5 +19,3 @@ createBackup() {
 
   echo "[ ZOMBOB : INFO ] > Server backup completed"
 }
-
-createBackup
