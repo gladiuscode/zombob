@@ -26,16 +26,31 @@ done
 # ====================
 # MAIN INPUT HANDLER
 # ====================
+
+parseArgs() {
+  if [ "$1" != "-b" ]
+  then
+    AGENT="USER"
+    TYPE=$1
+    ARG=$2
+    return
+  fi
+  AGENT="BOT"
+  TYPE=$2
+  ARG=$3
+}
+
 actionSelector() {
-  case "$1" in
+  parseArgs "$@"
+case "$TYPE" in
     "status")
       status ;;
     "start")
       start ;;
     "stop")
-      stop "$2" ;;
+      stop "$ARG" ;;
     "restart")
-      restart "$2" ;;
+      restart "$ARG" ;;
     "reset")
       reset ;;
     "update")
@@ -49,7 +64,7 @@ actionSelector() {
     "update-mods")
       updateMods ;;
     "send-message")
-      sendMessage "$2" ;;
+      sendMessage "$ARG" ;;
     "count-players")
       countPlayers ;;
     "check-mods")
@@ -70,4 +85,4 @@ echo "****************************************************************"
 echo "****                        ZOMBOB                          ****"
 echo "****************************************************************"
 
-actionSelector "$1" "$2"
+actionSelector "$1" "$2" "$3"
