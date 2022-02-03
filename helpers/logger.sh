@@ -10,10 +10,8 @@ logger() {
     return;
   fi
 
-  if [ "$1" != "-s" ]
+  if [ "$AGENT" == "BOT" ] && [ "$1" == "-s" ]
   then
-    return;
+    echo "$2"
   fi
-
-  echo "$2"
 }
