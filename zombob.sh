@@ -28,6 +28,8 @@ done
 # ====================
 actionSelector() {
   case "$1" in
+    "status")
+      status ;;
     "start")
       start ;;
     "stop")
@@ -58,7 +60,7 @@ actionSelector() {
       echo "[ ZOMBOB : INFO ] > Goodbye!"
       exit ;;
     *)
-      echo "Please input an action [start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"
+      echo "Please input an action [status|start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"
       read -r input
       actionSelector "$input"
   esac
