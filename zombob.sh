@@ -42,7 +42,10 @@ parseArgs() {
 
 actionSelector() {
   parseArgs "$@"
-case "$TYPE" in
+  logger "****************************************************************"
+  logger "****                        ZOMBOB                          ****"
+  logger "****************************************************************"
+  case "$TYPE" in
     "status")
       status ;;
     "start")
@@ -80,9 +83,5 @@ case "$TYPE" in
       actionSelector "$input"
   esac
 }
-
-logger "****************************************************************"
-logger "****                        ZOMBOB                          ****"
-logger "****************************************************************"
 
 actionSelector "$1" "$2" "$3"
