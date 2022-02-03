@@ -1,7 +1,7 @@
 #!/bin/bash
 
 restart() {
-  echo "[ ZOMBOB : INFO ] > Server restart started"
+  logger "[ ZOMBOB : INFO ] > Server restart started"
 
   checkServerStatus "down"
 
@@ -56,5 +56,5 @@ restart() {
   actionSelector "create-backup"
   actionSelector "start"
 
-  echo "[ ZOMBOB : INFO ] > Server restart completed"
+  logger "[ ZOMBOB : INFO ] > Server restart completed"
 }

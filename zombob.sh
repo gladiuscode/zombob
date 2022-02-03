@@ -58,8 +58,8 @@ case "$TYPE" in
     "create-backup")
       createBackup ;;
     "restore-backup")
-      echo "[ ZOMBOB : INFO ] > Server restore backup started"
-      echo "[ ZOMBOB : INFO ] > Server backup restored"
+      logger "[ ZOMBOB : INFO ] > Server restore backup started"
+      logger "[ ZOMBOB : INFO ] > Server backup restored"
       ;;
     "update-mods")
       updateMods ;;
@@ -72,17 +72,17 @@ case "$TYPE" in
     "clean-backups")
       cleanBackups ;;
     "exit")
-      echo "[ ZOMBOB : INFO ] > Goodbye!"
+      logger "[ ZOMBOB : INFO ] > Goodbye!"
       exit ;;
     *)
-      echo "Please input an action [status|start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"
+      logger "Please input an action [status|start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"
       read -r input
       actionSelector "$input"
   esac
 }
 
-echo "****************************************************************"
-echo "****                        ZOMBOB                          ****"
-echo "****************************************************************"
+logger "****************************************************************"
+logger "****                        ZOMBOB                          ****"
+logger "****************************************************************"
 
 actionSelector "$1" "$2" "$3"

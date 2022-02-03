@@ -1,7 +1,7 @@
 #!/bin/bash
 
 stop() {
-  echo "[ ZOMBOB : INFO ] > Server stop started"
+  logger "[ ZOMBOB : INFO ] > Server stop started"
 
   checkServerStatus "down"
 
@@ -19,17 +19,17 @@ stop() {
   }
 
   save() {
-    echo "Saving current world"
+    logger "Saving current world"
     sendServerCommand "save"
     sleep 10s
-    echo "Current world saved"
+    logger "Current world saved"
   }
 
   quit() {
-    echo "Stopping server"
+    logger "Stopping server"
     sendServerCommand "quit"
     sleep 5s
-    echo "Server stopped"
+    logger "Server stopped"
   }
 
   if [ "$STOP_TYPE" == $SKIP_WAIT ]
@@ -40,27 +40,27 @@ stop() {
   else
     computeServerMessage
 
-    echo "Waiting 5 minutes..."
+    logger "Waiting 5 minutes..."
     sendServerMessage "${MESSAGE}5 minuti"
     sleep 1m
 
-    echo "Waiting 4 minutes..."
+    logger "Waiting 4 minutes..."
     sendServerMessage "${MESSAGE}4 minuti"
     sleep 1m
 
-    echo "Waiting 3 minutes..."
+    logger "Waiting 3 minutes..."
     sendServerMessage "${MESSAGE}3 minuti"
     sleep 1m
 
-    echo "Waiting 2 minutes..."
+    logger "Waiting 2 minutes..."
     sendServerMessage "${MESSAGE}2 minuti"
     sleep 1m
 
-    echo "Waiting 1 minutes..."
+    logger "Waiting 1 minutes..."
     sendServerMessage "${MESSAGE}1 minuto"
     sleep 1m
 
-    echo "Saving..."
+    logger "Saving..."
     sendServerMessage "Per favore disconnettiti per un paio di minuti"
     save
     sleep 1m
@@ -80,5 +80,5 @@ stop() {
     killServerScreen
   fi
 
-  echo "[ ZOMBOB : INFO ] > Server stop completed"
+  logger "[ ZOMBOB : INFO ] > Server stop completed"
 }

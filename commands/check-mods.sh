@@ -1,7 +1,7 @@
 #!/bin/bash
 
 checkMods() {
-  echo "[ ZOMBOB : INFO ] > Check mods update started"
+  logger "[ ZOMBOB : INFO ] > Check mods update started"
 
   checkServerStatus "down"
 
@@ -50,7 +50,7 @@ checkMods() {
   checkRestartNeeded() {
     RESTART_NEEDED=0
     while read -r LINE; do
-      TIMESTAMP=$( echo "$LINE" | tr -dc '0-9' )
+      TIMESTAMP=$( logger "$LINE" | tr -dc '0-9' )
       WORKSHOP_ITEM_LAST_UPDATE=$( date -d "@$TIMESTAMP" +"%s" )
       if [ "$SERVER_STARTUP_DATE" -lt "$WORKSHOP_ITEM_LAST_UPDATE" ]
       then
@@ -69,18 +69,18 @@ checkMods() {
   if test -f "$STEAM_API_RESPONSE"; then
       rm "$STEAM_API_RESPONSE"
   fi
-  echo "$FILTERED_RESPONSE" > "$STEAM_API_RESPONSE"
+  logger "$FILTERED_RESPONSE" > "$STEAM_API_RESPONSE"
 
   checkRestartNeeded "$FILTERED_RESPONSE"
 
   if [ $RESTART_NEEDED -eq 0 ]
   then
-     echo "Mods are up to date"
+     logger "Mods are up to date"
   else
     actionSelector "restart" "toUpdate"
   fi
 
-  echo "[ ZOMBOB : INFO ] > Check mods update stopped"
+  logger "[ ZOMBOB : INFO ] > Check mods update stopped"
 }
 
 

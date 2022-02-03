@@ -1,7 +1,7 @@
 #!/bin/bash
 
 countPlayers() {
-  echo "[ ZOMBOB : INFO ] > Count Players started"
+  logger "[ ZOMBOB : INFO ] > Count Players started"
 
   checkServerStatus "down"
 
@@ -10,7 +10,7 @@ countPlayers() {
 
   PLAYERS=$(grep -o "Players.*" "$SERVER_CONSOLE" | tail -1)
 
-  echo "[ ZOMBOB : INFO ] > $PLAYERS"
+  logger "[ ZOMBOB : INFO ] > $PLAYERS"
 
-  echo "[ ZOMBOB : INFO ] > Count Players stopped"
+  logger "[ ZOMBOB : INFO ] > Count Players stopped"
 }
