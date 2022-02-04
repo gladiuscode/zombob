@@ -13,4 +13,6 @@ countPlayers() {
   logger "[ ZOMBOB : INFO ] > $PLAYERS"
 
   logger "[ ZOMBOB : INFO ] > Count Players stopped"
+
+  logger -s "$PLAYERS"
 }
