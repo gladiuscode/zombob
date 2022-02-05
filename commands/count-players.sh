@@ -1,7 +1,7 @@
 #!/bin/bash
 
 countPlayers() {
-  logger "[ ZOMBOB : INFO ] > Count Players started"
+  logger "Count Players started"
 
   checkServerStatus "down"
 
@@ -15,9 +15,9 @@ countPlayers() {
 
   MESSAGE="$PLAYERS / $MAX_PLAYERS"
 
-  logger "[ ZOMBOB : INFO ] > $MESSAGE"
+  logger "$MESSAGE"
 
-  logger "[ ZOMBOB : INFO ] > Count Players stopped"
+  logger "Count Players stopped"
 
   logger -s "$MESSAGE"
 }

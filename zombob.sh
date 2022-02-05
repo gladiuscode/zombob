@@ -61,8 +61,8 @@ actionSelector() {
     "create-backup")
       createBackup ;;
     "restore-backup")
-      logger "[ ZOMBOB : INFO ] > Server restore backup started"
-      logger "[ ZOMBOB : INFO ] > Server backup restored"
+      logger "Server restore backup started"
+      logger "Server backup restored"
       ;;
     "update-mods")
       updateMods ;;
@@ -75,7 +75,7 @@ actionSelector() {
     "clean-backups")
       cleanBackups ;;
     "exit")
-      logger "[ ZOMBOB : INFO ] > Goodbye!"
+      logger "Goodbye!"
       exit ;;
     *)
       logger "Please input an action [status|start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"

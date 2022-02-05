@@ -9,11 +9,11 @@ checkServerStatus() {
 
   if [ "$STATUS_TO_CHECK" == "up" ] && [ $STATUS -eq 1 ]
   then
-    logger "[ ZOMBOB : ERROR ] > Server is up" && exit
+    logger -e "Server is up" && exit
   fi
 
   if [ "$STATUS_TO_CHECK" == "down" ] && [ $STATUS -eq 0 ]
   then
-    logger "[ ZOMBOB : ERROR ] > Server is down" && exit
+    logger -e "Server is down" && exit
   fi
 }

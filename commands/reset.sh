@@ -1,7 +1,7 @@
 #!/bin/bash
 
 reset() {
-  logger "[ ZOMBOB : INFO ] > Server reset started"
+  logger "Server reset started"
 
   checkServerStatus "up"
 
@@ -18,6 +18,6 @@ reset() {
    logger "Deleting saves"
    rm -rf "$SAVES_PATH"
 
-   logger "[ ZOMBOB : INFO ] > Server reset completed"
+   logger "Server reset completed"
   fi
 }

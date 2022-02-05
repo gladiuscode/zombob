@@ -1,7 +1,7 @@
 #!/bin/bash
 
 createBackup() {
-  logger "[ ZOMBOB : INFO ] > Server backup started"
+  logger "Server backup started"
 
   RAW_BACKUP_DATE=$( date +"%c" )
   BACKUP_DATE="${RAW_BACKUP_DATE// /_}"
@@ -12,10 +12,10 @@ createBackup() {
   [ ! -d "$BACKUPS_PATH" ] && mkdir -p "$BACKUPS_PATH"
   [ ! -d "$BACKUPS_PATH" ] && logger "Backups directory in Zomboid folder is missing. Please create it." && exit
 
-  logger "[ ZOMBOB : INFO ] > Creating backup"
+  logger "Creating backup"
   mkdir "$BACKUP_FOLDER"
   tar -zcf "$BACKUP_FOLDER_NAME" "$SAVES_PATH" "$DATABASE_PATH"
-  logger "[ ZOMBOB : INFO ] > Backup created"
+  logger "Backup created"
 
-  logger "[ ZOMBOB : INFO ] > Server backup completed"
+  logger "Server backup completed"
 }

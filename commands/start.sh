@@ -1,7 +1,7 @@
 #!/bin/bash
 
 start() {
-  logger "[ ZOMBOB : INFO ] > start"
+  logger "Server is starting"
 
   checkServerStatus "up"
   killServerScreen
@@ -13,5 +13,5 @@ start() {
   resetStartupDate
   setStartupDate
 
-  logger "[ ZOMBOB : INFO ] > Server is up and running"
+  logger "Server is up and running"
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 updateMods() {
-  logger "[ ZOMBOB : INFO ] > Server update mods started"
+  logger "Server update mods started"
 
   actionSelector "stop" "toUpdate"
   actionSelector "create-backup"
@@ -14,5 +14,5 @@ updateMods() {
 
   actionSelector "start"
 
-  logger "[ ZOMBOB : INFO ] > Server mods updated"
+  logger "Server mods updated"
 }
