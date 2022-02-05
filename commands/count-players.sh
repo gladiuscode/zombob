@@ -16,8 +16,7 @@ countPlayers() {
   MESSAGE="$PLAYERS / $MAX_PLAYERS"
 
   logger "$MESSAGE"
+  logger -s "$MESSAGE"
 
   logger "Count Players stopped"
-
-  logger -s "$MESSAGE"
 }

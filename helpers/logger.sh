@@ -1,17 +1,21 @@
 #!/bin/bash
 
 logger() {
+  [ "$1" == "-s" ] || [ "$1" == "-e" ] && MESSAGE=$2 || MESSAGE=$1
+
+  if [ "$AGENT" == "BOT" ]
+  then
+    [ "$1" == "-s" ] && echo "$MESSAGE"
+    return
+  fi
+
   INFO="[ ZOMBOB : INFO ] > "
   ERROR="[ ZOMBOB : ERROR ] > "
 
-  if [ "$AGENT" != "BOT" ] && [ "$1" != '-s' ]
+  if [ "$1" == "-e" ]
   then
-    [ "$1" == "-e" ] && echo "$ERROR $2" || echo "$INFO $1"
-    return;
+    echo "$ERROR $MESSAGE"
+    return
   fi
-
-  if [ "$AGENT" == "BOT" ] && [ "$1" == "-s" ]
-  then
-    echo "$2"
-  fi
+  [ "$1" != "-s" ] && echo "$INFO $MESSAGE"
 }

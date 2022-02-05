@@ -7,7 +7,7 @@ status() {
   [ -n "$serverProcess" ] && MESSAGE="online" || MESSAGE="offline"
 
   logger "Status: $MESSAGE"
-  logger "Server Status completed"
-
   logger -s $MESSAGE
+
+  logger "Server Status completed"
 }
