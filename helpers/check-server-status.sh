@@ -9,11 +9,11 @@ checkServerStatus() {
 
   if [ "$STATUS_TO_CHECK" == "up" ] && [ $STATUS -eq 1 ]
   then
-    logger -e "Server is up" && exit
+    logger -e "Server is up" && exit 0
   fi
 
   if [ "$STATUS_TO_CHECK" == "down" ] && [ $STATUS -eq 0 ]
   then
-    logger -e "Server is down" && exit
+    logger -e "Server is down" && exit 0
   fi
 }

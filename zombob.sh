@@ -77,7 +77,7 @@ actionSelector() {
       cleanBackups ;;
     "exit")
       logger "Goodbye!"
-      exit ;;
+      exit 1;;
     *)
       logger "Please input an action [status|start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"
       read -r input
@@ -86,3 +86,5 @@ actionSelector() {
 }
 
 actionSelector "$1" "$2" "$3"
+
+exit 1
