@@ -5,7 +5,7 @@ checkMods() {
 
   checkServerStatus "down"
 
-  read -r SERVER_STARTUP_DATE < "$ENV_FILE_PATH"
+  read -r SERVER_STARTUP_DATE < "$ZOMBOB_DATA_ENV_FILE_PATH"
   WORKSHOP_ITEMS=$(grep -o "WorkshopItems.*" "$SERVER_INI_PATH" )
 
   readWorkshopItemsFromConfig() {
@@ -56,7 +56,7 @@ checkMods() {
       then
         RESTART_NEEDED=1
       fi
-    done < "$STEAM_API_RESPONSE"
+    done < "$ZOMBOB_DATA_STEAM_API_RESPONSE"
   }
 
   readWorkshopItemsFromConfig
@@ -66,10 +66,10 @@ checkMods() {
   RESPONSE=$( eval "$CURL_COMMAND" )
   FILTERED_RESPONSE=$( grep -Eo "\"time_updated\":[0-9]+" <<< "$RESPONSE" )
 
-  if test -f "$STEAM_API_RESPONSE"; then
-      rm "$STEAM_API_RESPONSE"
+  if test -f "$ZOMBOB_DATA_STEAM_API_RESPONSE"; then
+      rm "$ZOMBOB_DATA_STEAM_API_RESPONSE"
   fi
-  echo "$FILTERED_RESPONSE" > "$STEAM_API_RESPONSE"
+  echo "$FILTERED_RESPONSE" > "$ZOMBOB_DATA_STEAM_API_RESPONSE"
 
   checkRestartNeeded "$FILTERED_RESPONSE"
 

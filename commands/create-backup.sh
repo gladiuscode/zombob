@@ -6,11 +6,11 @@ createBackup() {
   RAW_BACKUP_DATE=$( date +"%c" )
   BACKUP_DATE="${RAW_BACKUP_DATE// /_}"
 
-  BACKUP_FOLDER="$BACKUPS_PATH/$BACKUP_DATE"
-  BACKUP_FOLDER_NAME="$BACKUPS_PATH/$BACKUP_DATE/backup.tar"
+  BACKUP_FOLDER="$ZOMBOB_DATA_BACKUPS_PATH/$BACKUP_DATE"
+  BACKUP_FOLDER_NAME="$ZOMBOB_DATA_BACKUPS_PATH/$BACKUP_DATE/backup.tar"
 
-  [ ! -d "$BACKUPS_PATH" ] && mkdir -p "$BACKUPS_PATH"
-  [ ! -d "$BACKUPS_PATH" ] && logger "Backups directory in Zomboid folder is missing. Please create it." && exit
+  [ ! -d "$ZOMBOB_DATA_BACKUPS_PATH" ] && mkdir -p "$ZOMBOB_DATA_BACKUPS_PATH"
+  [ ! -d "$ZOMBOB_DATA_BACKUPS_PATH" ] && logger "Backups directory in Zomboid folder is missing. Please create it." && exit
 
   logger "Creating backup"
   mkdir "$BACKUP_FOLDER"

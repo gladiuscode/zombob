@@ -2,12 +2,12 @@
 
 setStartupDate() {
   STARTUP_DATE=$( date +"%s" )
-  touch "$ENV_FILE_PATH"
-  echo "$STARTUP_DATE" > "$ENV_FILE_PATH"
+  touch "$ZOMBOB_DATA_ENV_FILE_PATH"
+  echo "$STARTUP_DATE" > "$ZOMBOB_DATA_ENV_FILE_PATH"
 }
 
 resetStartupDate() {
-  if test -f "$ENV_FILE_PATH"; then
-      rm "$ENV_FILE_PATH"
+  if test -f "$ZOMBOB_DATA_ENV_FILE_PATH"; then
+      rm "$ZOMBOB_DATA_ENV_FILE_PATH"
   fi
 }
