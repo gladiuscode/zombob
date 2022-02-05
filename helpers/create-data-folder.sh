@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ZOMBOB_DATA_PATH="${HOME}zombob-data"
-
 createDataFolder() {
   logger "Create data folder started"
 
@@ -12,9 +10,7 @@ createDataFolder() {
   fi
 
   mkdir "$ZOMBOB_DATA_PATH"
-  [ ! -d "$ZOMBOB_DATA_PATH" ] && logger "Cannot create zombob-data folder"
+  [ ! -d "$ZOMBOB_DATA_PATH" ] && logger -e "Cannot create zombob-data folder" && exit 0
 
   logger "Create data folder completed"
 }
-
-createDataFolder
