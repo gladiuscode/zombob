@@ -4,10 +4,10 @@ status() {
   logger "Server Status started"
 
   serverProcess=$(pgrep -f "./start-server.sh -servername $SERVER_NAME")
-  [ -n "$serverProcess" ] && MESSAGE="online" || MESSAGE="offline"
+  [ -n "$serverProcess" ] && STATUS="online" || STATUS="offline"
 
-  logger "Status: $MESSAGE"
-  logger -s $MESSAGE
+  logger "Status: $STATUS"
+  logger -s $STATUS
 
   logger "Server Status completed"
 }

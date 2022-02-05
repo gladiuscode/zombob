@@ -13,10 +13,10 @@ countPlayers() {
   PLAYERS=${RAW_PLAYERS//[^0-9]/}
   MAX_PLAYERS=${RAW_MAX_PLAYERS//[^0-9]/}
 
-  MESSAGE="$PLAYERS / $MAX_PLAYERS"
+  PLAYERS_COUNT="$PLAYERS / $MAX_PLAYERS"
 
-  logger "$MESSAGE"
-  logger -s "$MESSAGE"
+  logger "$PLAYERS_COUNT"
+  logger -s "$PLAYERS_COUNT"
 
   logger "Count Players stopped"
 }
