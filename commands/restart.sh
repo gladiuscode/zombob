@@ -8,9 +8,12 @@ restart() {
   TO_UPDATE="toUpdate"
   TO_CLEAN_UP="cleanUp"
 
+  [ "$1" == "TO_UPDATE" ] && TRACK_STATUS="aggiornamento mods" || TRACK_STATUS="riavvio programmato"
+  trackStatus "$TRACK_STATUS"
+
   if [ "$1" == "$TO_CLEAN_UP" ]
   then
-    cleanUpTacker
+    cleanUpPlayersStatistics
   fi
 
   printRestartInMinutes() {
