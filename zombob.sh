@@ -70,7 +70,7 @@ actionSelector() {
     "send-message")
       sendMessage "$ARG" ;;
     "count-players")
-      countPlayers ;;
+      countPlayers "$ARG" ;;
     "check-mods")
       checkMods ;;
     "clean-backups")

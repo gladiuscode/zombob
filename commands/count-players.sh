@@ -18,5 +18,20 @@ countPlayers() {
   logger "$PLAYERS_COUNT"
   logger -s "$PLAYERS_COUNT"
 
+  if [ "$1" != "track" ]
+  then
+    logger "Count Players stopped"
+    return
+  fi
+
+  if ! test -f "$ZOMBOB_DATA_STATISTICS_FILE_PATH"
+  then
+    touch "$ZOMBOB_DATA_STATISTICS_FILE_PATH"
+  fi
+
+  NOW=$( date +"%c" )
+  echo "$NOW" >> "$ZOMBOB_DATA_STATISTICS_FILE_PATH"
+  echo "[Players] $PLAYERS_COUNT" >> "$ZOMBOB_DATA_STATISTICS_FILE_PATH"
+
   logger "Count Players stopped"
 }
