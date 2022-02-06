@@ -5,12 +5,18 @@ restart() {
 
   checkServerStatus "down"
 
-  TO_UPDATE=$1
+  TO_UPDATE="toUpdate"
+  TO_CLEAN_UP="cleanUp"
+
+  if [ "$1" == "$TO_CLEAN_UP" ]
+  then
+    cleanUpTacker
+  fi
 
   printRestartInMinutes() {
     MESSAGE="Server restart in $1"
 
-    if [ "$TO_UPDATE" == "toUpdate" ]
+    if [ "$1" == "$TO_UPDATE" ]
     then
       MESSAGE="Aggiornamento mods necessario. Restart in $1"
     fi
@@ -23,7 +29,7 @@ restart() {
     sendServerMessage "$MESSAGE"
   }
 
-  if [ -z "$TO_UPDATE" ]
+  if [ "$1" != "$TO_UPDATE" ]
   then
     printRestartInMinutes "10 minuti"
     sleep 3m
