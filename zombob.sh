@@ -78,7 +78,7 @@ actionSelector() {
       echo "* send-message"
       echo "* count-players"
       echo "* check-mods"
-      echo "* clean-backups]"
+      echo "* clean-backups"
       echo "* exit"
 
       read -r input
