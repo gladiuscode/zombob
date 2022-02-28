@@ -1,18 +1,26 @@
 #!/bin/bash
 
 checkMods() {
-  logger "Check mods update started"
+  logger "[ CHECK_MODS ] START"
 
   checkServerStatus "down"
 
   read -r SERVER_STARTUP_DATE < "$ZOMBOB_DATA_ENV_FILE_PATH"
+
+  local WORKSHOP_ITEMS
+  local ITEMS=()
+  local ITEM_COUNT
+  local PUBLISHED_FIELD_IDS=()
+  local CURL_COMMAND
+  local RESPONSE
+  local FILTERED_RESPONSE
+  local RESTART_NEEDED=0
+
   WORKSHOP_ITEMS=$(grep -o "WorkshopItems.*" "$SERVER_INI_PATH" )
 
   readWorkshopItemsFromConfig() {
-    OLD_IFS=$IFS
+    local OLD_IFS=$IFS
     IFS="=;"
-
-    ITEMS=()
 
     read -ra RAW_ITEMS <<< "$WORKSHOP_ITEMS"
     for RAW_ITEM in "${RAW_ITEMS[@]}"; do
@@ -26,13 +34,11 @@ checkMods() {
   }
 
   createApiParams() {
-    ITEMS_LENGTH=${#ITEMS[@]}
+    local ITEMS_LENGTH=${#ITEMS[@]}
     ITEM_COUNT="itemcount=$ITEMS_LENGTH"
 
-    PUBLISHED_FIELD_IDS=()
-
     for (( i = 0; i < "$ITEMS_LENGTH"; i++ )); do
-        ITEM="${ITEMS[$i]}"
+        local ITEM="${ITEMS[$i]}"
         [ "$i" == "${#ITEMS_LENGTH[@]}" ] && END="\\" || END=""
         PUBLISHED_FIELD_ID="--data-urlencode \"publishedfileids[$i]=$ITEM\" $END"
         PUBLISHED_FIELD_IDS=( "${PUBLISHED_FIELD_IDS[@]}" "$PUBLISHED_FIELD_ID" )
@@ -48,10 +54,13 @@ checkMods() {
   }
 
   checkRestartNeeded() {
-    RESTART_NEEDED=0
     while read -r LINE; do
+      local TIMESTAMP
+      local WORKSHOP_ITEM_LAST_UPDATE
+
       TIMESTAMP=$( echo "$LINE" | tr -dc '0-9' )
       WORKSHOP_ITEM_LAST_UPDATE=$( date -d "@$TIMESTAMP" +"%s" )
+
       if [ "$SERVER_STARTUP_DATE" -lt "$WORKSHOP_ITEM_LAST_UPDATE" ]
       then
         RESTART_NEEDED=1
@@ -76,11 +85,12 @@ checkMods() {
   if [ $RESTART_NEEDED -eq 0 ]
   then
      logger "Mods are up to date"
-  else
-    actionSelector "restart" "toUpdate"
+     logger "[ CHECK_MODS ] END"
+     return
   fi
 
-  logger "Check mods update stopped"
+  actionSelector "restart" "toUpdate"
+  logger "[ CHECK_MODS ] END"
 }
 
 
