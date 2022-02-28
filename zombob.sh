@@ -10,7 +10,7 @@ source "$CONFIGURATION_PATH"
 # ====================
 # HELPERS
 # ====================
-for HLP_PATH in $HELPERS_PATH
+for HLP_PATH in $ZOMBOB_HELPERS_PATH
 do
   source "$HLP_PATH"
 done
@@ -18,7 +18,7 @@ done
 # ====================
 # COMMANDS
 # ====================
-for CMD_PATH in $COMMANDS_PATH
+for CMD_PATH in $ZOMBOB_COMMANDS_PATH
 do
   source "$CMD_PATH"
 done
