@@ -1,7 +1,7 @@
 #!/bin/bash
 
 start() {
-  logger "Server is starting"
+  logger "[ START ] START"
 
   checkServerStatus "up"
   killServerScreen
@@ -16,4 +16,6 @@ start() {
   trackStatus "online"
 
   logger "Server is up and running"
+
+  logger "[ START ] END"
 }
