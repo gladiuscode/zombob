@@ -1,7 +1,7 @@
 #!/bin/bash
 
-updateMods() {
-  logger "Server update mods started"
+forceUpdateMods() {
+  logger "[ FORCE_UPDATE_MODS ] START"
 
   actionSelector "stop" "toUpdate"
   actionSelector "create-backup"
@@ -14,5 +14,6 @@ updateMods() {
 
   actionSelector "start"
 
-  logger "Server mods updated"
+  logger "Force mods update completed"
+  logger "[ FORCE_UPDATE_MODS ] END"
 }

@@ -51,8 +51,8 @@ actionSelector() {
       logger "Server restore backup started"
       logger "Server backup restored"
       ;;
-    "update-mods")
-      updateMods ;;
+    "force-mods-mods")
+      forceUpdateMods ;;
     "send-message")
       sendMessage "$ARG" ;;
     "count-players")
@@ -74,7 +74,7 @@ actionSelector() {
       echo "* update"
       echo "* create-backup"
       echo "* restore-backup"
-      echo "* update-mods"
+      echo "* force-mods-mods"
       echo "* send-message"
       echo "* count-players"
       echo "* check-mods"
