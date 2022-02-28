@@ -1,23 +1,26 @@
 #!/bin/bash
 
 reset() {
-  logger "Server reset started"
+  logger "[ RESET ] START"
 
   checkServerStatus "up"
 
   logger "Are you sure? y/N"
-  read -r confirm
+  read -r CONFIRM
 
-  if [ -z "$confirm" ] || [ "$confirm" == "n" ] || [ "$confirm" == "N" ]
+  if [ -z "$CONFIRM" ] || [ "$CONFIRM" == "n" ] || [ "$CONFIRM" == "N" ]
   then
     logger "Reset aborted"
-  else
-   logger "Deleting database"
-   rm "$DATABASE_PATH"
-
-   logger "Deleting saves"
-   rm -rf "$SAVES_PATH"
-
-   logger "Server reset completed"
+    logger "[ RESET ] END"
+    return
   fi
+
+  logger "Deleting database"
+  rm "$DATABASE_PATH"
+
+  logger "Deleting saves"
+  rm -rf "$SAVES_PATH"
+
+  logger "Server reset completed"
+  logger "[ RESET ] END"
 }
