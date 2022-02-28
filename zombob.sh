@@ -39,7 +39,7 @@ actionSelector() {
       start ;;
     "stop")
       stop "$ARG" ;;
-    "restart")
+  "restart")
       restart "$ARG" ;;
     "reset")
       reset ;;
@@ -65,18 +65,18 @@ actionSelector() {
       echo "Goodbye!"
       exit 0;;
     *)
-      echo "Please input one of the following actions:"
+      echo "Please input one of the following actions with optional parameters:"
       echo "* status"
       echo "* start"
-      echo "* stop"
-      echo "* restart"
+      echo "* stop skipWait"
+      echo "* restart toUpdate cleanUp"
       echo "* reset"
       echo "* update"
       echo "* create-backup"
       echo "* restore-backup"
       echo "* force-mods-mods"
-      echo "* send-message"
-      echo "* count-players"
+      echo "* send-message message"
+      echo "* count-players track"
       echo "* check-mods"
       echo "* clean-backups"
       echo "* exit"
