@@ -1,18 +1,25 @@
 #!/bin/bash
 
 sendMessage() {
-  logger "Send Message started"
+  logger "[ SEND_MESSAGE ] START"
 
   checkServerStatus "down"
 
-  if [ -z "$1" ]
+  executeOutro() {
+    logger "Message sent"
+    logger "[ SEND_MESSAGE ] END"
+  }
+
+  if [ -n "$1" ]
   then
-    logger "Please write your message: "
-    read -r MESSAGE
-    sendServerMessage "$MESSAGE"
-  else
     sendServerMessage "$1"
+    executeOutro
+    return
   fi
 
-  logger "Send Message completed"
+  logger "Please write your message: "
+  read -r MESSAGE
+  sendServerMessage "$MESSAGE"
+
+  executeOutro
 }
