@@ -1,7 +1,7 @@
 #!/bin/bash
 
 restart() {
-  logger "Server restart started"
+  logger "[ RESTART ] START"
 
   checkServerStatus "down"
 
@@ -38,7 +38,8 @@ restart() {
     actionSelector "create-backup"
     actionSelector "start"
 
-    logger "Server restart completed"
+    logger "Server restarted"
+    logger "[ RESTART ] END"
   }
 
   if [ "$1" != "$TO_UPDATE" ]
