@@ -1,13 +1,12 @@
 #!/bin/bash
 
 status() {
-  logger "Server Status started"
+  logger "[ STATUS ] START"
 
-  serverProcess=$(pgrep -f "./start-server.sh -servername $SERVER_NAME")
-  [ -n "$serverProcess" ] && STATUS="online" || STATUS="offline"
+  getServerStatus
+  [ -n "$SERVER_PROCESS" ] && STATUS="online" || STATUS="offline"
 
-  logger "Status: $STATUS"
-  logger -s $STATUS
+  logger "Server is $STATUS"
 
-  logger "Server Status completed"
+  logger "[ STATUS ] END"
 }
