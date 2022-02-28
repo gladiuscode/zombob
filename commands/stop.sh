@@ -1,13 +1,13 @@
 #!/bin/bash
 
 stop() {
-  logger "Server stop started"
+  logger "[ STOP ] START"
 
   checkServerStatus "down"
 
-  TO_UPDATE="toUpdate"
-  SKIP_WAIT="skipWait"
-  STOP_TYPE=$1
+  local TO_UPDATE="toUpdate"
+  local SKIP_WAIT="skipWait"
+  local STOP_TYPE=$1
 
   computeServerMessage() {
     if [ "$STOP_TYPE" == $TO_UPDATE ]
@@ -16,6 +16,30 @@ stop() {
       return
     fi
     MESSAGE="Il server si spegnerà tra "
+  }
+
+  sendWarningMessage() {
+    local TIME=$1
+
+    local TIME_UNIT_LOG
+    local TIME_UNIT_MESSAGE
+    if [ -n "$2" ]
+    then
+      TIME_UNIT_LOG="seconds"
+      TIME_UNIT_MESSAGE="secondi"
+    else
+      TIME_UNIT_LOG="minutes"
+      TIME_UNIT_MESSAGE="minuti"
+    fi
+
+    logger "Waiting ${TIME} ${TIME_UNIT_LOG}..."
+    sendServerMessage "${MESSAGE}${TIME} ${TIME_UNIT_MESSAGE}"
+
+    if [ -n "$2" ]
+    then
+      sleep 1s
+    fi
+    sleep 1m
   }
 
   save() {
@@ -37,48 +61,35 @@ stop() {
     save
     quit
     killServerScreen
-  else
-    computeServerMessage
 
-    logger "Waiting 5 minutes..."
-    sendServerMessage "${MESSAGE}5 minuti"
-    sleep 1m
+    logger "Server is down"
+    logger "[ STOP ] END"
 
-    logger "Waiting 4 minutes..."
-    sendServerMessage "${MESSAGE}4 minuti"
-    sleep 1m
-
-    logger "Waiting 3 minutes..."
-    sendServerMessage "${MESSAGE}3 minuti"
-    sleep 1m
-
-    logger "Waiting 2 minutes..."
-    sendServerMessage "${MESSAGE}2 minuti"
-    sleep 1m
-
-    logger "Waiting 1 minutes..."
-    sendServerMessage "${MESSAGE}1 minuto"
-    sleep 1m
-
-    logger "Saving..."
-    sendServerMessage "Per favore disconnettiti per un paio di minuti"
-    save
-    sleep 1m
-
-    sendServerMessage "${MESSAGE}5 secondi"
-    sleep 1s
-    sendServerMessage "${MESSAGE}4 secondi"
-    sleep 1s
-    sendServerMessage "${MESSAGE}3 secondi"
-    sleep 1s
-    sendServerMessage "${MESSAGE}2 secondi"
-    sleep 1s
-    sendServerMessage "${MESSAGE}1 secondo"
-    sleep 1s
-
-    quit
-    killServerScreen
+    return
   fi
 
-  logger "Server stop completed"
+  computeServerMessage
+
+  sendWarningMessage "5"
+  sendWarningMessage "4"
+  sendWarningMessage "3"
+  sendWarningMessage "2"
+  sendWarningMessage "1"
+
+  sendServerMessage "Per favore disconnettiti per un paio di minuti"
+  save
+  sleep 1m
+
+  sendWarningMessage "5" "seconds"
+  sendWarningMessage "4" "seconds"
+  sendWarningMessage "3" "seconds"
+  sendWarningMessage "2" "seconds"
+  sendWarningMessage "1" "seconds"
+
+  quit
+  killServerScreen
+
+  logger "Server is down"
+
+  logger "[ STOP ] END"
 }
