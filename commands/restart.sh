@@ -5,9 +5,10 @@ restart() {
 
   checkServerStatus "down"
 
-  TO_UPDATE="toUpdate"
-  TO_CLEAN_UP="cleanUp"
+  local TO_UPDATE="toUpdate"
+  local TO_CLEAN_UP="cleanUp"
 
+  local TRACK_STATUS
   [ "$1" == "TO_UPDATE" ] && TRACK_STATUS="aggiornamento mods" || TRACK_STATUS="riavvio programmato"
   trackStatus "$TRACK_STATUS"
 
@@ -17,19 +18,27 @@ restart() {
   fi
 
   printRestartInMinutes() {
-    MESSAGE="Server restart in $1"
+    local MESSAGE="Server restart in $1"
 
     if [ "$1" == "$TO_UPDATE" ]
     then
-      MESSAGE="Aggiornamento mods necessario. Restart in $1"
+      local MESSAGE="Aggiornamento mods necessario. Restart in $1"
     fi
 
     sendServerMessage "$MESSAGE"
   }
 
   printAskToDisconnect() {
-    MESSAGE="Per favore disconnettiti per un paio di minuti"
+    local MESSAGE="Per favore disconnettiti per un paio di minuti"
     sendServerMessage "$MESSAGE"
+  }
+
+  executeOutro() {
+    actionSelector "stop" "skipWait"
+    actionSelector "create-backup"
+    actionSelector "start"
+
+    logger "Server restart completed"
   }
 
   if [ "$1" != "$TO_UPDATE" ]
@@ -45,25 +54,25 @@ restart() {
 
     printAskToDisconnect
     sleep 1m
-  else
-    printRestartInMinutes "5 minuti"
-    sleep 1m
-    printRestartInMinutes "4 minuti"
-    sleep 1m
-    printRestartInMinutes "3 minuti"
-    sleep 1m
-    printRestartInMinutes "2 minuti"
-    sleep 1m
-    printRestartInMinutes "1 minuto"
-    sleep 1m
 
-    printAskToDisconnect
-    sleep 1m
+    executeOutro
+
+    return
   fi
 
-  actionSelector "stop" "skipWait"
-  actionSelector "create-backup"
-  actionSelector "start"
+  printRestartInMinutes "5 minuti"
+  sleep 1m
+  printRestartInMinutes "4 minuti"
+  sleep 1m
+  printRestartInMinutes "3 minuti"
+  sleep 1m
+  printRestartInMinutes "2 minuti"
+  sleep 1m
+  printRestartInMinutes "1 minuto"
+  sleep 1m
 
-  logger "Server restart completed"
+  printAskToDisconnect
+  sleep 1m
+
+  executeOutro
 }
