@@ -26,26 +26,12 @@ done
 # ====================
 # MAIN INPUT HANDLER
 # ====================
-
-parseArgs() {
-  if [ "$1" != "-b" ]
-  then
-    AGENT="USER"
-    TYPE=$1
-    ARG=$2
-    return
-  fi
-  AGENT="BOT"
-  TYPE=$2
-  ARG=$3
-}
-
 actionSelector() {
-  parseArgs "$@"
+  local TYPE=$1
+  local ARG=$2
+
   createDataFolder
-  logger "****************************************************************"
-  logger "****                        ZOMBOB                          ****"
-  logger "****************************************************************"
+
   case "$TYPE" in
     "status")
       status ;;
@@ -85,6 +71,9 @@ actionSelector() {
   esac
 }
 
-actionSelector "$1" "$2" "$3"
+echo "****************************************************************"
+echo "****                        ZOMBOB                          ****"
+echo "****************************************************************"
+actionSelector "$1" "$2"
 
 exit 0
