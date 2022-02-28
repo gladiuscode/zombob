@@ -1,11 +1,12 @@
 #!/bin/bash
 
 update() {
-  logger "Server update started"
+  logger "[ UPDATE ] START"
 
   checkServerStatus "up"
 
   $STEAMCMD_PATH +login anonymous +app_update 380870 validate +quit
 
-  logger "Server update completed"
+  logger "Server updated"
+  logger "[ UPDATE ] END"
 }
