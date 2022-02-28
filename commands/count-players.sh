@@ -1,30 +1,30 @@
 #!/bin/bash
 
 countPlayers() {
-  logger "Count Players started"
+  logger "[ COUNT_PLAYERS ] START"
 
   checkServerStatus "down"
 
   sendServerCommand "players"
   sleep 10s
 
+  local RAW_PLAYERS
   RAW_PLAYERS=$(grep -o "Players.*" "$SERVER_CONSOLE" | tail -1)
-  RAW_MAX_PLAYERS=$(grep -o "MaxPlayers=.*" "$SERVER_INI_PATH")
-  PLAYERS=${RAW_PLAYERS//[^0-9]/}
-  MAX_PLAYERS=${RAW_MAX_PLAYERS//[^0-9]/}
 
-  PLAYERS_COUNT="$PLAYERS / $MAX_PLAYERS"
+  local RAW_MAX_PLAYERS
+  RAW_MAX_PLAYERS=$(grep -o "MaxPlayers=.*" "$SERVER_INI_PATH")
+
+  local PLAYERS=${RAW_PLAYERS//[^0-9]/}
+  local MAX_PLAYERS=${RAW_MAX_PLAYERS//[^0-9]/}
+
+  local PLAYERS_COUNT="$PLAYERS / $MAX_PLAYERS"
 
   logger "$PLAYERS_COUNT"
-  logger -s "$PLAYERS_COUNT"
 
-  if [ "$1" != "track" ]
+  if [ "$1" == "track" ]
   then
-    logger "Count Players stopped"
-    return
+    trackPlayers
   fi
 
-  trackPlayers
-
-  logger "Count Players stopped"
+  logger "[ COUNT_PLAYERS ] END"
 }
