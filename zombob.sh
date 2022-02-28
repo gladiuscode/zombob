@@ -62,10 +62,25 @@ actionSelector() {
     "clean-backups")
       cleanBackups ;;
     "exit")
-      logger "Goodbye!"
+      echo "Goodbye!"
       exit 0;;
     *)
-      logger "Please input an action [status|start|stop|restart|reset|update|create-backup|restore-backup|update-mods|send-message|count-players|check-mods|clean-backups] or [exit]"
+      echo "Please input one of the following actions:"
+      echo "* status"
+      echo "* start"
+      echo "* stop"
+      echo "* restart"
+      echo "* reset"
+      echo "* update"
+      echo "* create-backup"
+      echo "* restore-backup"
+      echo "* update-mods"
+      echo "* send-message"
+      echo "* count-players"
+      echo "* check-mods"
+      echo "* clean-backups]"
+      echo "* exit"
+
       read -r input
       actionSelector "$input"
   esac
@@ -74,6 +89,7 @@ actionSelector() {
 echo "****************************************************************"
 echo "****                        ZOMBOB                          ****"
 echo "****************************************************************"
+
 actionSelector "$1" "$2"
 
 exit 0
