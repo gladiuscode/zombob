@@ -1,6 +1,7 @@
 #!/bin/bash
 
 logger() {
+  local MESSAGE=$1
   local INFO="[ ZOMBOB : INFO ] > "
   local ERROR="[ ZOMBOB : ERROR ] > "
   local PREFIX
