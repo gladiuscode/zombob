@@ -16,7 +16,7 @@ checkUpdateMods() {
   local FILTERED_RESPONSE
   local RESTART_NEEDED=0
 
-  WORKSHOP_ITEMS=$(grep -o "WorkshopItems.*" "$SERVER_INI_PATH" )
+  WORKSHOP_ITEMS=$(grep -o "^WorkshopItems.*" "$SERVER_INI_PATH" )
 
   readWorkshopItemsFromConfig() {
     local OLD_IFS=$IFS
