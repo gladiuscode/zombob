@@ -12,5 +12,6 @@ logger() {
     touch "$ZOMBOB_DATA_CONSOLE_FILE_PATH"
   fi
 
+  echo "$MESSAGE"
   echo "$PREFIX $MESSAGE" >> "$ZOMBOB_DATA_CONSOLE_FILE_PATH"
 }
