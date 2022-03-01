@@ -14,7 +14,7 @@
 Well, I host a Project Zomboid server and I love automating stuff, therefore I wanted to create this utility to help myself and other run all boring stuff in a very simply way.
 
 ## How
-This utily can handle the following tasks:
+This utility can handle the following tasks:
 
 ### Server Admin
 1. start server;
@@ -30,6 +30,7 @@ This utily can handle the following tasks:
 
 ### Backups
 1. create backup;
+2. clean backups;
 
 ### Statistics
 1. count players currently connected;
@@ -40,7 +41,8 @@ This utily can handle the following tasks:
 
 ## ROADMAP
 
-1. Init crontab
-2. Traslations
+1. Traslations
+2. Initialize crontab
+3. 
 
 Made with love.
