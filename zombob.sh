@@ -49,7 +49,7 @@ actionSelector() {
       createBackup ;;
     "clean-backups")
       cleanBackups ;;
-    "check-mods-update")
+    "check-update-mods")
       checkUpdateMods ;;
     "force-update-mods")
       forceUpdateMods ;;
@@ -68,8 +68,8 @@ actionSelector() {
       echo "* restart toUpdate cleanUp"
       echo "* reset"
       echo "* update"
-      echo "* check-mods-update"
-      echo "* force-mods-update"
+      echo "* check-update-mods"
+      echo "* force-update-mods"
       echo "* create-backup"
       echo "* clean-backups"
       echo "* send-message message"
