@@ -6,5 +6,10 @@ logger() {
   local PREFIX
   [ "$1" == "-e" ] && PREFIX=$ERROR || PREFIX=$INFO
 
+  if ! test -f "$ZOMBOB_DATA_PLAYERS_FILE_PATH"
+  then
+    touch "$ZOMBOB_DATA_CONSOLE_FILE_PATH"
+  fi
+
   echo "$PREFIX $MESSAGE" > "$ZOMBOB_DATA_CONSOLE_FILE_PATH"
 }
