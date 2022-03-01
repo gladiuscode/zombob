@@ -39,7 +39,7 @@ actionSelector() {
       start ;;
     "stop")
       stop "$ARG" ;;
-  "restart")
+    "restart")
       restart "$ARG" ;;
     "reset")
       reset ;;
