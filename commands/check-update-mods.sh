@@ -1,6 +1,6 @@
 #!/bin/bash
 
-checkMods() {
+checkUpdateMods() {
   logger "[ CHECK_MODS ] START"
 
   checkServerStatus "down"

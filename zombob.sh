@@ -47,20 +47,16 @@ actionSelector() {
       update ;;
     "create-backup")
       createBackup ;;
-    "restore-backup")
-      logger "Server restore backup started"
-      logger "Server backup restored"
-      ;;
-    "force-mods-mods")
+    "clean-backups")
+      cleanBackups ;;
+    "check-mods-update")
+      checkUpdateMods ;;
+    "force-update-mods")
       forceUpdateMods ;;
     "send-message")
       sendMessage "$ARG" ;;
     "count-players")
       countPlayers "$ARG" ;;
-    "check-mods")
-      checkMods ;;
-    "clean-backups")
-      cleanBackups ;;
     "exit")
       echo "Goodbye!"
       exit 0;;
@@ -72,13 +68,12 @@ actionSelector() {
       echo "* restart toUpdate cleanUp"
       echo "* reset"
       echo "* update"
+      echo "* check-mods-update"
+      echo "* force-mods-update"
       echo "* create-backup"
-      echo "* restore-backup"
-      echo "* force-mods-mods"
+      echo "* clean-backups"
       echo "* send-message message"
       echo "* count-players track"
-      echo "* check-mods"
-      echo "* clean-backups"
       echo "* exit"
 
       read -r input
