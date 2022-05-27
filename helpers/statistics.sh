@@ -6,7 +6,7 @@ trackPlayers() {
   local NOW
   NOW=$( date +"%c" )
 
-  echo "$NOW" >> "$ZOMBOB_DATA_PLAYERS_FILE_PATH"
+  echo "$SERVERN_NAME - $NOW" >> "$ZOMBOB_DATA_PLAYERS_FILE_PATH"
   echo "[Players] $PLAYERS_COUNT" >> "$ZOMBOB_DATA_PLAYERS_FILE_PATH"
 
   logger "[ TRACK_PLAYERS : HELPER ] END"
@@ -29,7 +29,7 @@ trackStatus() {
   cleanUpStatusStatistics
 
   local STATUS=$1
-  echo "[Status] $STATUS" >> "$ZOMBOB_DATA_STATUS_FILE_PATH"
+  echo "$SERVER_NAME - [Status] $STATUS" >> "$ZOMBOB_DATA_STATUS_FILE_PATH"
 
   logger "[ TRACK_STATUS : HELPER ] END"
 }
