@@ -27,9 +27,6 @@ done
 # MAIN INPUT HANDLER
 # ====================
 actionSelector() {
-  local TYPE=$1
-  local ARG=$2
-
   createDataFolder
 
   case "$TYPE" in
@@ -61,28 +58,31 @@ actionSelector() {
       echo "Goodbye!"
       exit 0;;
     *)
-      echo "Please input one of the following actions with optional parameters:"
-      echo "* status"
-      echo "* start"
-      echo "* stop skipWait"
-      echo "* restart toUpdate cleanUp"
-      echo "* reset"
-      echo "* update"
-      echo "* check-update-mods"
-      echo "* force-update-mods"
-      echo "* create-backup"
-      echo "* clean-backups"
-      echo "* send-message message"
-      echo "* count-players track"
-      echo "* exit"
-
-      read -r input
-      actionSelector "$input"
+      echo "Unknown action. Input -h to see all options"
   esac
 }
 
-echo "****************************************************************"
-echo "****                        ZOMBOB                          ****"
-echo "****************************************************************"
+# ====================
+# INPUT PARSER
+# ====================
 
-actionSelector "$1" "$2"
+if [ "$#" == 0 ]
+  then
+    showHelp
+    exit
+fi
+
+while getopts s:a:i:h: flag
+do
+  case "${flag}" in
+    s) SERVER_NAME=${OPTARG};;
+    a) TYPE=${OPTARG};;
+    i) ARG=${OPTARG};;
+    *) showHelp
+      ;;
+  esac
+done
+
+actionSelector
+
+
