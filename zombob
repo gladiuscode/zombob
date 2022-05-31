@@ -72,11 +72,11 @@ if [ "$#" == 0 ]
     exit
 fi
 
-while getopts s:a:i:h: flag
+while getopts s:c:i flag
 do
   case "${flag}" in
     s) SERVER_NAME=${OPTARG};;
-    a) TYPE=${OPTARG};;
+    c) TYPE=${OPTARG};;
     i) ARG=${OPTARG};;
     *) showHelp
       ;;
