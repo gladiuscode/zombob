@@ -5,6 +5,8 @@ stop() {
 
   checkServerStatus "down"
 
+  trackStatus "stopping"
+
   local TO_UPDATE="toUpdate"
   local SKIP_WAIT="skipWait"
   local STOP_TYPE=$1
@@ -88,6 +90,8 @@ stop() {
 
   quit
   killServerScreen
+
+  trackStatus "offline"
 
   logger "Server is down"
 

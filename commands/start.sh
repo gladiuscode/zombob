@@ -6,6 +6,8 @@ start() {
   checkServerStatus "up"
   killServerScreen
 
+  trackStatus "starting"
+
   screen -dmS "$SCREEN_SERVER_NAME"
   sendServerCommand "cd $SERVER_PATH"
   sendServerCommand "./start-server.sh -servername $SERVER_NAME"

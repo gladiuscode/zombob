@@ -5,6 +5,8 @@ restart() {
 
   checkServerStatus "down"
 
+  trackStatus "restarting"
+
   local TO_UPDATE="toUpdate"
   local TO_CLEAN_UP="cleanUp"
 

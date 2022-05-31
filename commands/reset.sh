@@ -5,6 +5,8 @@ reset() {
 
   checkServerStatus "up"
 
+  trackStatus "resetting"
+
   logger "Are you sure? y/N"
   read -r CONFIRM
 
@@ -20,6 +22,8 @@ reset() {
 
   logger "Deleting saves"
   rm -rf "$SAVES_PATH"
+
+  trackStatus "offline"
 
   logger "Server reset completed"
   logger "[ RESET ] END"
