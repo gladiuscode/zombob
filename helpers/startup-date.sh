@@ -4,7 +4,7 @@ setStartupDate() {
   logger "[ SET_STARTUP_DATE : HELPER ] START"
   STARTUP_DATE=$( date +"%s" )
   touch "$ZOMBOB_DATA_ENV_FILE_PATH"
-  echo "$SERVER_NAME - $STARTUP_DATE" > "$ZOMBOB_DATA_ENV_FILE_PATH"
+  echo "$STARTUP_DATE" > "$ZOMBOB_DATA_ENV_FILE_PATH"
   logger "[ SET_STARTUP_DATE : HELPER ] END"
 }
 
