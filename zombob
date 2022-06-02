@@ -32,7 +32,7 @@ if [ "$#" == 0 ]
     exit
 fi
 
-while getopts s:c:i flag
+while getopts s:c:i: flag
 do
   case "${flag}" in
     s) CUSTOM_SERVER_NAME=${OPTARG}
