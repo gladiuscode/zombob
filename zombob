@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# ====================
+# CONFIGURATION
+# ====================
 # shellcheck source=home/steam/zombob/config.cfg
-CONFIGURATION_PATH="$HOME/Documents/Dev/zombob/config.cfg"
+CONFIGURATION_PATH="$HOME/zombob/config.cfg"
+source "$CONFIGURATION_PATH"
 
 # ====================
 # HELPERS
@@ -22,7 +26,6 @@ done
 # ====================
 # INPUT PARSER
 # ====================
-
 if [ "$#" == 0 ]
   then
     showHelp
@@ -32,8 +35,9 @@ fi
 while getopts s:c:i flag
 do
   case "${flag}" in
-    s) SERVER_NAME=${OPTARG}
+    s) CUSTOM_SERVER_NAME=${OPTARG}
       updateConfig
+      source "$CONFIGURATION_PATH"
       ;;
     c) TYPE=${OPTARG};;
     i) ARG=${OPTARG};;
@@ -41,13 +45,6 @@ do
       ;;
   esac
 done
-
-# ====================
-# CONFIGURATION
-# ====================
-# shellcheck source=home/steam/zombob/config.cfg
-CONFIGURATION_PATH="$HOME/zombob/config.cfg"
-source "$CONFIGURATION_PATH"
 
 # ====================
 # MAIN INPUT HANDLER
