@@ -1,11 +1,7 @@
 #!/bin/bash
 
-# ====================
-# CONFIGURATION
-# ====================
 # shellcheck source=home/steam/zombob/config.cfg
-CONFIGURATION_PATH="$HOME/zombob/config.cfg"
-source "$CONFIGURATION_PATH"
+CONFIGURATION_PATH="$HOME/Documents/Dev/zombob/config.cfg"
 
 # ====================
 # HELPERS
@@ -22,6 +18,36 @@ for CMD_PATH in $ZOMBOB_COMMANDS_PATH
 do
   source "$CMD_PATH"
 done
+
+# ====================
+# INPUT PARSER
+# ====================
+
+if [ "$#" == 0 ]
+  then
+    showHelp
+    exit
+fi
+
+while getopts s:c:i flag
+do
+  case "${flag}" in
+    s) SERVER_NAME=${OPTARG}
+      updateConfig
+      ;;
+    c) TYPE=${OPTARG};;
+    i) ARG=${OPTARG};;
+    *) showHelp
+      ;;
+  esac
+done
+
+# ====================
+# CONFIGURATION
+# ====================
+# shellcheck source=home/steam/zombob/config.cfg
+CONFIGURATION_PATH="$HOME/zombob/config.cfg"
+source "$CONFIGURATION_PATH"
 
 # ====================
 # MAIN INPUT HANDLER
@@ -61,27 +87,6 @@ actionSelector() {
       echo "Unknown action. Input -h to see all options"
   esac
 }
-
-# ====================
-# INPUT PARSER
-# ====================
-
-if [ "$#" == 0 ]
-  then
-    showHelp
-    exit
-fi
-
-while getopts s:c:i flag
-do
-  case "${flag}" in
-    s) SERVER_NAME=${OPTARG};;
-    c) TYPE=${OPTARG};;
-    i) ARG=${OPTARG};;
-    *) showHelp
-      ;;
-  esac
-done
 
 actionSelector
 
