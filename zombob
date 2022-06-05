@@ -49,18 +49,24 @@ done
 # ====================
 # MAIN INPUT HANDLER
 # ====================
+# shellcheck disable=SC2120
 actionSelector() {
+
+  COMMAND
+  [[ -z "$1" ]] && COMMAND=TYPE || COMMAND=$1
+  [[ -z "$2" ]] && INPUT=ARG || COMMAND=$2
+
   createDataFolder
 
-  case "$TYPE" in
+  case "$COMMAND" in
     "status")
       status ;;
     "start")
       start ;;
     "stop")
-      stop "$ARG" ;;
+      stop "$INPUT" ;;
     "restart")
-      restart "$ARG" ;;
+      restart "$INPUT" ;;
     "reset")
       reset ;;
     "update")
@@ -74,9 +80,9 @@ actionSelector() {
     "force-update-mods")
       forceUpdateMods ;;
     "send-message")
-      sendMessage "$ARG" ;;
+      sendMessage "$INPUT" ;;
     "count-players")
-      countPlayers "$ARG" ;;
+      countPlayers "$INPUT" ;;
     "exit")
       echo "Goodbye!"
       exit 0;;
