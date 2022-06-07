@@ -15,3 +15,12 @@ logger() {
   echo "$MESSAGE"
   echo "$PREFIX $MESSAGE" >> "$ZOMBOB_DATA_CONSOLE_FILE_PATH"
 }
+
+resetConsole() {
+  if ! test -f "$ZOMBOB_DATA_PLAYERS_FILE_PATH"
+  then
+    return
+  fi
+
+  rm "$ZOMBOB_DATA_CONSOLE_FILE_PATH"
+}

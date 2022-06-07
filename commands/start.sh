@@ -16,6 +16,7 @@ start() {
   setStartupDate
 
   trackStatus "online"
+  resetConsole
 
   logger "Server is up and running"
 
