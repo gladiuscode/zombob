@@ -48,5 +48,8 @@ showHelp() {
   echo "> count-players"
   echo "                      -i track"
   printf "\n"
+  echo "> reset-password                  - It reset a given username password if found in the server database"
+  echo "                      -i username"
+  printf "\n"
   echo "> exit"
 }

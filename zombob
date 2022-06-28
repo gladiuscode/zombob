@@ -90,6 +90,8 @@ actionSelector() {
       sendMessage "$INPUT" ;;
     "count-players")
       countPlayers "$INPUT" ;;
+    "reset-password")
+      resetPassword "$INPUT" ;;
     "exit")
       echo "Goodbye!"
       exit 0;;
