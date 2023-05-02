@@ -40,6 +40,7 @@ stop() {
     if [ -n "$2" ]
     then
       sleep 1s
+      return
     fi
     sleep 1m
   }
