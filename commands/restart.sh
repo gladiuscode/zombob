@@ -3,6 +3,7 @@
 restart() {
   logger "[ RESTART ] START"
 
+  logger "[Discord] Controllo stato del server"
   checkServerStatus "down"
 
   trackStatus "restarting"
@@ -27,6 +28,7 @@ restart() {
       local MESSAGE="Aggiornamento mods necessario. Restart in $1"
     fi
 
+    logger "[Discord] ${MESSAGE}"
     sendServerMessage "$MESSAGE"
   }
 
@@ -40,12 +42,15 @@ restart() {
     actionSelector "create-backup"
     actionSelector "start"
 
+    logger "[Discord] Server riavviato"
     logger "Server restarted"
     logger "[ RESTART ] END"
   }
 
   if [ "$1" != "$TO_UPDATE" ]
   then
+    logger "[Discord] Riavvio avviato"
+
     printRestartInMinutes "10 minuti"
     sleep 3m
     printRestartInMinutes "7 minuti"

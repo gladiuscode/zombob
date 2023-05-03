@@ -13,9 +13,11 @@ createBackup() {
   [ ! -d "$ZOMBOB_DATA_BACKUPS_PATH" ] && mkdir -p "$ZOMBOB_DATA_BACKUPS_PATH"
   [ ! -d "$ZOMBOB_DATA_BACKUPS_PATH" ] && logger "Backups directory in Zomboid folder is missing. Please create it." && exit 1
 
+  logger "[Discord] Creazione backup"
   logger "Creating backup"
   mkdir "$BACKUP_FOLDER"
   tar -zcf "$BACKUP_FOLDER_NAME" "$SAVES_PATH" "$DATABASE_PATH" "$ZOMBOID_SERVER_FOLDER_PATH"
+  logger "[Discord] Backup creato"
   logger "Backup created"
 
   logger "Backup done"

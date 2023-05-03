@@ -3,6 +3,7 @@
 stop() {
   logger "[ STOP ] START"
 
+  logger "[Discord] Controllo stato del server"
   checkServerStatus "down"
 
   trackStatus "stopping"
@@ -35,6 +36,7 @@ stop() {
     fi
 
     logger "Waiting ${TIME} ${TIME_UNIT_LOG}..."
+    logger "[Discord] ${MESSAGE}${TIME} ${TIME_UNIT_MESSAGE}"
     sendServerMessage "${MESSAGE}${TIME} ${TIME_UNIT_MESSAGE}"
 
     if [ -n "$2" ]
@@ -47,23 +49,31 @@ stop() {
 
   save() {
     logger "Saving current world"
+    logger "[Discord] Salvataggio partita avviato"
     sendServerCommand "save"
     sleep 10s
     logger "Current world saved"
+    logger "[Discord] Salvataggio partita concluso"
   }
 
   quit() {
     logger "Stopping server"
+    logger "[Discord] Spegnimento server avviato"
     sendServerCommand "quit"
     sleep 5s
     logger "Server stopped"
+    logger "[Discord] Spegnimento server concluso"
   }
 
   if [ "$STOP_TYPE" == $SKIP_WAIT ]
   then
+    logger "[Discord] Spegnimento server senza avviso"
+
     save
     quit
     killServerScreen
+
+    logger "[Discord] Il server è spento"
 
     logger "Server is down"
     logger "[ STOP ] END"
@@ -93,6 +103,8 @@ stop() {
   killServerScreen
 
   trackStatus "offline"
+
+  logger "[Discord] Server spento"
 
   logger "Server is down"
 
