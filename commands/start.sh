@@ -3,6 +3,8 @@
 start() {
   logger "[ START ] START"
 
+  checkScriptAvailability
+
   logger "[Discord] Controllo stato del server"
   checkServerStatus "up"
   killServerScreen
@@ -17,7 +19,7 @@ start() {
   resetStartupDate
   setStartupDate
 
-  trackStatus "online"
+  trackStatus "none"
 
   logger "[Discord] Server attivo"
 

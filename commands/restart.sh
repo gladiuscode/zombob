@@ -3,10 +3,10 @@
 restart() {
   logger "[ RESTART ] START"
 
+  checkScriptAvailability
+
   logger "[Discord] Controllo stato del server"
   checkServerStatus "down"
-
-  trackStatus "restarting"
 
   local TO_UPDATE="toUpdate"
   local TO_CLEAN_UP="cleanUp"
@@ -63,6 +63,8 @@ restart() {
     printAskToDisconnect
     sleep 1m
 
+    trackStatus "none"
+
     executeOutro
 
     return
@@ -81,6 +83,8 @@ restart() {
 
   printAskToDisconnect
   sleep 1m
+
+  trackStatus "none"
 
   executeOutro
 }

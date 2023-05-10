@@ -3,6 +3,8 @@
 stop() {
   logger "[ STOP ] START"
 
+  checkScriptAvailability
+
   logger "[Discord] Controllo stato del server"
   checkServerStatus "down"
 
@@ -73,6 +75,8 @@ stop() {
     quit
     killServerScreen
 
+    trackStatus "none"
+
     logger "[Discord] Il server è spento"
 
     logger "Server is down"
@@ -102,7 +106,7 @@ stop() {
   quit
   killServerScreen
 
-  trackStatus "offline"
+  trackStatus "none"
 
   logger "[Discord] Server spento"
 

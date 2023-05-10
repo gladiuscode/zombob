@@ -34,6 +34,14 @@ trackStatus() {
   logger "[ TRACK_STATUS : HELPER ] END"
 }
 
+readTrackedStatus() {
+  logger "[ READ_TRACK_STATUS : HELPER ] START"
+
+  TRACKED_STATUS=$(grep -o "[STATUS] *" "$ZOMBOB_DATA_STATUS_FILE_PATH" | tail -1)
+
+  logger "[ READ_TRACK_STATUS : HELPER ] END"
+}
+
 cleanUpStatusStatistics() {
   logger "[ CLEAN_UP_STATUS_STATS : HELPER ] START"
 

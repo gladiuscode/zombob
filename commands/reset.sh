@@ -3,6 +3,8 @@
 reset() {
   logger "[ RESET ] START"
 
+  checkScriptAvailability
+
   checkServerStatus "up"
 
   trackStatus "resetting"
@@ -13,6 +15,7 @@ reset() {
   if [ -z "$CONFIRM" ] || [ "$CONFIRM" == "n" ] || [ "$CONFIRM" == "N" ]
   then
     logger "Reset aborted"
+    trackStatus "none"
     logger "[ RESET ] END"
     return
   fi
@@ -23,7 +26,7 @@ reset() {
   logger "Deleting saves"
   rm -rf "$SAVES_PATH"
 
-  trackStatus "offline"
+  trackStatus "none"
 
   logger "Server reset completed"
   logger "[ RESET ] END"

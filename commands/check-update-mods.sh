@@ -3,7 +3,11 @@
 checkUpdateMods() {
   logger "[ CHECK_MODS ] START"
 
+  checkScriptAvailability
+
   checkServerStatus "down"
+
+  trackStatus "checking_mods"
 
   read -r SERVER_STARTUP_DATE < "$ZOMBOB_DATA_ENV_FILE_PATH"
 
@@ -81,6 +85,8 @@ checkUpdateMods() {
   echo "$FILTERED_RESPONSE" > "$ZOMBOB_DATA_STEAM_API_RESPONSE"
 
   checkRestartNeeded "$FILTERED_RESPONSE"
+
+  trackStatus "none"
 
   if [ $RESTART_NEEDED -eq 0 ]
   then
