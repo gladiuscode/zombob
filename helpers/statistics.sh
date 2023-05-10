@@ -37,7 +37,7 @@ trackStatus() {
 readTrackedStatus() {
   logger "[ READ_TRACK_STATUS : HELPER ] START"
 
-  TRACKED_STATUS=$(grep -o "(?<=\[STATUS\] ).*" "$ZOMBOB_DATA_STATUS_FILE_PATH" | tail -1)
+  TRACKED_STATUS=$(grep -Po "(?<=\[STATUS\] ).*" "$ZOMBOB_DATA_STATUS_FILE_PATH" | tail -1)
 
   logger "[ READ_TRACK_STATUS : HELPER ] END"
 }
