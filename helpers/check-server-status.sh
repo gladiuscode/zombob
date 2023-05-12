@@ -11,13 +11,13 @@ checkServerStatus() {
   then
     logger "[Discord] Il server è già attivo"
     logger "Server is up"
-    exit 1
+    exit 0
   fi
 
   if [ "$STATUS_TO_CHECK" == "down" ] && [ $STATUS -eq 0 ]
   then
     logger "[Discord] Il server è già spento"
     logger "Server is down"
-    exit 1
+    exit 0
   fi
 }
