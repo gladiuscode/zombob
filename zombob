@@ -90,6 +90,8 @@ actionSelector() {
       sendMessage "$INPUT" ;;
     "count-players")
       countPlayers "$INPUT" ;;
+    "load-crontab")
+      loadCrontabBackup ;;
     "exit")
       echo "Goodbye!"
       exit 0;;
