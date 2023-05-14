@@ -71,7 +71,7 @@ actionSelector() {
     "start")
       start ;;
     "stop")
-      stop "$INPUT" "test" ;;
+      stop "$INPUT" ;;
     "restart")
       restart "$INPUT" ;;
     "reset")

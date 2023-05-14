@@ -3,8 +3,6 @@
 stop() {
   logger "[ STOP ] START"
 
-  logger "$1 $2"
-
   checkScriptAvailability
 
   logger "[Discord] Controllo stato del server"
